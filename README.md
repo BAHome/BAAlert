@@ -16,8 +16,8 @@
  1.1.0.5、新增 BAAlert_OC.h 文件，只需导入 BAAlert_OC.h 一个文件就可以使用 alert 和 actionSheet 了
  1.1.0.6、删除了部分代码和属性，具体见源码 和 demo
  
-#### version 1.0.1
-* 12、终于可以愉快的 pod 导入了，pod 导入：` pod 'BAAlert-OC' ` 【最新版本：1.0.1】
+#### version 1.1.1
+* 12、终于可以愉快的 pod 导入了，pod 导入：` pod 'BAAlert' ` 【最新版本：1.0.1】
 * 11、可以自定义每个按钮的字体颜色了！
 * 10、再次设计结构，新增frameWork静态库文件封装，喜欢简洁的你可以直接导入frameWork即可！
 * 9、多种炫酷入场、退出动画，让你的APP各种叼！
@@ -33,7 +33,7 @@
 ---
 
 ## 0、安装、导入示例和源码地址：
-* 0.1、pod 导入：` pod 'BAAlert-OC' ` 【最新版本：1.0.1】
+* 0.1、pod 导入：` pod 'BAAlert' ` 【最新版本：1.1.0】
 * 0.2、使用方法2：下载demo，把 BAAlert 文件夹拖入项目即可，<br>
 导入头文件：<br>
 `  #import "BAAlert_OC.h" `<br>
