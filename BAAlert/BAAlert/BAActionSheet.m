@@ -339,7 +339,6 @@ static NSString * const kCellID = @"BAActionSheetCell";
     }
 }
 
-
 - (void)ba_removeSelf
 {
     [self.tableView removeFromSuperview];
@@ -361,7 +360,7 @@ static NSString * const kCellID = @"BAActionSheetCell";
         _tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.f];
         self.backgroundColor = BAKit_COLOR_Translucent;
         [self addSubview:_tableView];
-        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
+        [_tableView registerNib:[UINib nibWithNibName:@"BAActionSheetCell" bundle:nil] forCellReuseIdentifier:kCellID];
     }
     return _tableView;
 }
@@ -372,6 +371,13 @@ static NSString * const kCellID = @"BAActionSheetCell";
     {
         _actionSheetWindow = [UIApplication sharedApplication].keyWindow;
         self.actionSheetWindow.backgroundColor = BAKit_COLOR_Translucent;
+        
+        if (self.actionSheetWindow.windowLevel != UIWindowLevelNormal)
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"windowLevel == %ld AND hidden == 0 " , UIWindowLevelNormal];
+            self.actionSheetWindow = [[UIApplication sharedApplication].windows filteredArrayUsingPredicate:predicate].firstObject;
+        }
+        return _actionSheetWindow;
     }
     return _actionSheetWindow;
 }

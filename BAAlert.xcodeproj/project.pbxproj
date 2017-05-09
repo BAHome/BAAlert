@@ -15,7 +15,6 @@
 		C431D9E21EC03F850081799B /* BAAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9DA1EC03F850081799B /* BAAlert.m */; };
 		C431D9E31EC03F850081799B /* BAActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9DC1EC03F850081799B /* BAActionSheet.m */; };
 		C431D9E41EC03F850081799B /* BAActionSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9DE1EC03F850081799B /* BAActionSheetCell.m */; };
-		C431D9E51EC03F850081799B /* BAActionSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C431D9DF1EC03F850081799B /* BAActionSheetCell.xib */; };
 		C431D9E61EC03F850081799B /* CALayer+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9E11EC03F850081799B /* CALayer+Animation.m */; };
 		C431D9F11EC043B50081799B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9E81EC043B50081799B /* ViewController.m */; };
 		C431D9F21EC043B50081799B /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9EA1EC043B50081799B /* ViewController2.m */; };
@@ -24,6 +23,7 @@
 		C431D9F51EC043B50081799B /* 123.png in Resources */ = {isa = PBXBuildFile; fileRef = C431D9EE1EC043B50081799B /* 123.png */; };
 		C431D9F61EC043B50081799B /* 背景.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C431D9EF1EC043B50081799B /* 背景.jpg */; };
 		C431D9F71EC043B50081799B /* 美女.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C431D9F01EC043B50081799B /* 美女.jpg */; };
+		C46BF76A1EC1B4C400A56A25 /* BAActionSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C46BF7691EC1B4C400A56A25 /* BAActionSheetCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,6 @@
 		C431D9DC1EC03F850081799B /* BAActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAActionSheet.m; sourceTree = "<group>"; };
 		C431D9DD1EC03F850081799B /* BAActionSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAActionSheetCell.h; sourceTree = "<group>"; };
 		C431D9DE1EC03F850081799B /* BAActionSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAActionSheetCell.m; sourceTree = "<group>"; };
-		C431D9DF1EC03F850081799B /* BAActionSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BAActionSheetCell.xib; sourceTree = "<group>"; };
 		C431D9E01EC03F850081799B /* CALayer+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Animation.h"; sourceTree = "<group>"; };
 		C431D9E11EC03F850081799B /* CALayer+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Animation.m"; sourceTree = "<group>"; };
 		C431D9E71EC043B50081799B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		C431D9EE1EC043B50081799B /* 123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123.png; sourceTree = "<group>"; };
 		C431D9EF1EC043B50081799B /* 背景.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "背景.jpg"; sourceTree = "<group>"; };
 		C431D9F01EC043B50081799B /* 美女.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "美女.jpg"; sourceTree = "<group>"; };
+		C46BF7691EC1B4C400A56A25 /* BAActionSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BAActionSheetCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +127,7 @@
 				C431D9DC1EC03F850081799B /* BAActionSheet.m */,
 				C431D9DD1EC03F850081799B /* BAActionSheetCell.h */,
 				C431D9DE1EC03F850081799B /* BAActionSheetCell.m */,
-				C431D9DF1EC03F850081799B /* BAActionSheetCell.xib */,
+				C46BF7691EC1B4C400A56A25 /* BAActionSheetCell.xib */,
 				C431D9E01EC03F850081799B /* CALayer+Animation.h */,
 				C431D9E11EC03F850081799B /* CALayer+Animation.m */,
 			);
@@ -197,7 +197,7 @@
 				C431D9D01EC03F150081799B /* LaunchScreen.storyboard in Resources */,
 				C431D9CD1EC03F150081799B /* Assets.xcassets in Resources */,
 				C431D9CB1EC03F150081799B /* Main.storyboard in Resources */,
-				C431D9E51EC03F850081799B /* BAActionSheetCell.xib in Resources */,
+				C46BF76A1EC1B4C400A56A25 /* BAActionSheetCell.xib in Resources */,
 				C431D9F61EC043B50081799B /* 背景.jpg in Resources */,
 				C431D9F71EC043B50081799B /* 美女.jpg in Resources */,
 				C431D9F41EC043B50081799B /* VerCodeAlertView.xib in Resources */,
