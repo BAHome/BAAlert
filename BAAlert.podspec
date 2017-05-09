@@ -9,4 +9,8 @@ Pod::Spec.new do |s|
     s.source       = { :git => 'https://github.com/BAHome/BAAlert.git', :tag => s.version.to_s }
     s.source_files = 'BAAlert/BAAlert/*.{h,m}'
     s.requires_arc = true
+    s.resource_bundles = {
+    'BAAlertResource' => ['BAAlert/BAAlert/*.xib']
+    }
+
 end
