@@ -6,12 +6,12 @@
 
 ## 更新提示：【倒叙更新】
 
-#### version 1.1.1
+#### version 1.1.2
 
 最新更新时间：2017-05-09 【倒叙】 <br>
-最新Version：【Version：1.1.1】 <br>
+最新Version：【Version：1.1.2】 <br>
 更新内容： <br>
-1.1.1.1、pod 更新xib 文件 <br>
+1.1.2.1、pod 更新xib 文件 <br>
 
 #### version 1.1.0
 
@@ -42,7 +42,7 @@
 ---
 
 ## 0、安装、导入示例和源码地址：
-* 0.1、pod 导入：` pod 'BAAlert' ` 【最新版本：1.1.0】
+* 0.1、pod 导入：` pod 'BAAlert' ` 【最新版本：1.1.2】
 * 0.2、使用方法2：下载demo，把 BAAlert 文件夹拖入项目即可，<br>
 导入头文件：<br>
 `  #import "BAAlert_OC.h" `<br>
