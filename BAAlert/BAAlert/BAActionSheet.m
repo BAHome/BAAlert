@@ -360,7 +360,7 @@
         _tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.f];
         self.backgroundColor = BAKit_COLOR_Translucent;
         [self addSubview:_tableView];
-        [_tableView registerNib:[UINib nibWithNibName:BAActionSheetCellID bundle:nil] forCellReuseIdentifier:BAActionSheetCellID];
+        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:nil] forCellReuseIdentifier:BAActionSheetCellID];
     }
     return _tableView;
 }
