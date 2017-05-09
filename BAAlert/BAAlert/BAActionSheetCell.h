@@ -10,7 +10,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *BAActionSheetCellID = @"BAActionSheetCell";
 
 @interface BAActionSheetCell : UITableViewCell
 

@@ -12,6 +12,7 @@
 #import "CALayer+Animation.h"
 #import "BAAlert_OC.h"
 
+static NSString * const kCellID = @"BAActionSheetCell";
 
 @interface BAActionSheet ()
 <
@@ -136,7 +137,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BAActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:BAActionSheetCellID forIndexPath:indexPath];
+    BAActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     cell.selectionStyle = (self.title)?UITableViewCellSelectionStyleNone:UITableViewCellSelectionStyleDefault;
     if ( 0 == indexPath.section )
     {
@@ -360,7 +361,7 @@
         _tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.f];
         self.backgroundColor = BAKit_COLOR_Translucent;
         [self addSubview:_tableView];
-        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:nil] forCellReuseIdentifier:BAActionSheetCellID];
+        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     }
     return _tableView;
 }
