@@ -370,15 +370,15 @@ static NSString * const kCellID = @"BAActionSheetCell";
     if (!_actionSheetWindow)
     {
         _actionSheetWindow = [UIApplication sharedApplication].keyWindow;
-        self.actionSheetWindow.backgroundColor = BAKit_COLOR_Translucent;
         
         if (self.actionSheetWindow.windowLevel != UIWindowLevelNormal)
         {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"windowLevel == %ld AND hidden == 0 " , UIWindowLevelNormal];
             self.actionSheetWindow = [[UIApplication sharedApplication].windows filteredArrayUsingPredicate:predicate].firstObject;
         }
-        return _actionSheetWindow;
+        self.actionSheetWindow.backgroundColor = BAKit_COLOR_Translucent;
     }
+
     return _actionSheetWindow;
 }
 
