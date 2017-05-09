@@ -360,7 +360,16 @@ static NSString * const kCellID = @"BAActionSheetCell";
         _tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.f];
         self.backgroundColor = BAKit_COLOR_Translucent;
         [self addSubview:_tableView];
-        [_tableView registerNib:[UINib nibWithNibName:@"BAActionSheetCell" bundle:nil] forCellReuseIdentifier:kCellID];
+        
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlertBundle" withExtension:@"bundle"];
+        if (url)
+        {
+            [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:[NSBundle bundleWithURL:url]] forCellReuseIdentifier:kCellID];
+        }
+        else
+        {
+            [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
+        }
     }
     return _tableView;
 }
