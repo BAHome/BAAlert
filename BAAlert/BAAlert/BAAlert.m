@@ -210,16 +210,16 @@
 @end
 
 
-#define DSBaseScreenWidth   320.0f
-#define DSBaseScreenHeight  568.0f
+#define BAKit_BaseScreenWidth   320.0f
+#define BAKit_BaseScreenHeight  568.0f
 
 
 /*! 屏幕适配（5S标准屏幕：320 * 568） */
 // iPhone 7 屏幕：375 * 667
 //376/320 =
 //667/568 =
-#define DSScaleXAndWidth    SCREENWIDTH/DSBaseScreenWidth
-#define DSScaleYAndHeight   SCREENHEIGHT/DSBaseScreenHeight
+#define BAKit_ScaleXAndWidth    SCREENWIDTH/BAKit_BaseScreenWidth
+#define BAKit_ScaleYAndHeight   SCREENHEIGHT/BAKit_BaseScreenHeight
 
 #define kBAAlert_Width             SCREENWIDTH - 50 * 2
 #define kBAAlert_Padding           10
@@ -823,8 +823,8 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     CGFloat min_inset = kBAAlert_Padding;
     _scroll_bottom = 0;
     
-    _maxContent_Width = self.view_width - 50 * DSScaleXAndWidth * 2;
-    _maxContent_Height = self.view_height - 50 * DSScaleYAndHeight * 2;
+    _maxContent_Width = self.view_width - 50 * BAKit_ScaleXAndWidth * 2;
+    _maxContent_Height = self.view_height - 50 * BAKit_ScaleYAndHeight * 2;
     _button_totalHeight = kBAAlert_ButtonHeight*((_buttonTitleArray.count>2||_buttonTitleArray.count==0)?_buttonTitleArray.count:1);
 
     // 标题
