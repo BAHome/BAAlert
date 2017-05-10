@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "BAAlert"
-    s.version      = "1.1.3"
+    s.version      = "1.1.4"
     s.summary      = '目前为止，最为精简的 alert 和 actionSheet 封装！BAAlert 让你的弹框不再孤单！'
     s.homepage     = 'https://github.com/BAHome/BAAlert'
     s.license      = 'MIT'

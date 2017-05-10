@@ -6,12 +6,12 @@
 
 ## 更新提示：【倒叙更新】
 
-#### version 1.1.2
+#### version 1.1.4
 
 最新更新时间：2017-05-09 【倒叙】 <br>
-最新Version：【Version：1.1.2】 <br>
+最新Version：【Version：1.1.4】 <br>
 更新内容： <br>
-1.1.2.1、pod 更新xib 文件 <br>
+1.1.4.1、pod 更新xib 文件 <br>
 
 #### version 1.1.0
 
