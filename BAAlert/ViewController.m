@@ -228,6 +228,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     /*! 第一种封装使用示例 */
     [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg0 image:nil buttonTitles:@[@"取消",@"确定",@"确定2",@"确定3"] buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor], [UIColor purpleColor]] configuration:^(BAAlert *temp) {
         
+        BAKit_StrongSelf
         //        temp.bgColor       = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.3];
         /*! 开启边缘触摸隐藏alertView */
         temp.isTouchEdgeHide = NO;
@@ -237,8 +238,11 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         //        temp.isShowAnimate   = YES;
         //        /*! 进出场动画样式 默认为：1 */
         //        temp.animatingStyle  = 1;
+        
+        self.alertView1 = temp;
     }actionClick:^(NSInteger index) {
         BAKit_StrongSelf
+        [self.alertView1 ba_dismissAlertView];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
@@ -251,42 +255,9 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
             ViewController2 *vc2 = [ViewController2 new];
             vc2.title = @"alert1";
             [self.navigationController pushViewController:vc2 animated:YES];
-            /*! 隐藏alert */
-            //            [weakSelf.alertView1 ba_dismissAlertView];
         }
     }];
-    
-    /*! 第二种常用方法使用示例 */
-    
-    //    /*! 1、类似系统alert【加边缘手势消失】 */
-    //    _alertView1 = [[BAAlert alloc] ba_showTitle:@"温馨提示："
-    //
-    //                                                    image:nil
-    //                                             buttonTitles:@[@"取消", @"确定"]];
-    //    _alertView1.bgColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.3];
-    //    /*! 是否开启边缘触摸隐藏 alert */
-    //    _alertView1.isTouchEdgeHide = YES;
-    //    /*! 显示alert */
-    //    [_alertView1 ba_showAlertView];
-    //
-    //    BAKit_WeakSelf
-    //    _alertView1.buttonActionBlock = ^(NSInteger index){
-    //        if (index == 0)
-    //        {
-    //            NSLog(@"点击了取消按钮！");
-    //            /*! 隐藏alert */
-    ////            [weakSelf.alertView1 ba_dismissAlertView];
-    //        }
-    //        else if (index == 1)
-    //        {
-    //            NSLog(@"点击了确定按钮！");
-    //            ViewController2 *vc2 = [ViewController2 new];
-    //            vc2.title = @"alert1";
-    //            [weakSelf.navigationController pushViewController:vc2 animated:YES];
-    //            /*! 隐藏alert */
-    ////            [weakSelf.alertView1 ba_dismissAlertView];
-    //        }
-    //    };
+
 }
 
 - (void)alert2
@@ -295,20 +266,21 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     BAKit_WeakSelf
     [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg2 image:nil buttonTitles:@[@"取消", @"跳转VC2"] buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
-        self.alertView2 = tempView;
         /*! 自定义按钮文字颜色 */
-        //    _alertView2.buttonTitleColor = [UIColor orangeColor];
-        self.alertView2.bgColor = [UIColor colorWithRed:1.0 green:1.0 blue:0 alpha:0.3];
+        //    tempView.buttonTitleColor = [UIColor orangeColor];
+        tempView.bgColor = [UIColor colorWithRed:1.0 green:1.0 blue:0 alpha:0.3];
         
         /*! 是否开启进出场动画 默认：NO，如果 YES ，并且同步设置进出场动画枚举为默认值：1 */
-        self.alertView2.showAnimate = YES;
+        tempView.showAnimate = YES;
+        
+        self.alertView2 = tempView;
+
     } actionClick:^(NSInteger index) {
         BAKit_StrongSelf
+        [self.alertView2 ba_dismissAlertView];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
-            /*! 隐藏alert */
-            //            [weakSelf.alertView2 ba_dismissAlertView];
         }
         else if (index == 1)
         {
@@ -326,19 +298,20 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     BAKit_WeakSelf
     [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg1 image:nil buttonTitles:@[@"取消", @"确定"] buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
-        self.alertView3 = tempView;
         /*! 自定义按钮文字颜色 */
-        //    _alertView3.buttonTitleColor = [UIColor orangeColor];
+        //    tempView.buttonTitleColor = [UIColor orangeColor];
         /*! 自定义alert的背景图片 */
-        self.alertView3.bgImageName      = @"背景.jpg";
+        tempView.bgImageName      = @"背景.jpg";
         /*! 开启动画，并且设置动画样式，默认：1 */
-        //    _alertView3.isShowAnimate = YES;
+        //    tempView.isShowAnimate = YES;
         
         /*! 没有开启动画，直接进出场动画样式，默认开启动画 */
-        self.alertView3.animatingStyle  = BAAlertAnimatingStyleFall;
+        tempView.animatingStyle  = BAAlertAnimatingStyleFall;
         
+        self.alertView3 = tempView;
     } actionClick:^(NSInteger index) {
         BAKit_StrongSelf
+        [self.alertView3 ba_dismissAlertView];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
@@ -363,21 +336,20 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     BAKit_WeakSelf
     [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg1 image:[UIImage imageNamed:@"美女.jpg"] buttonTitles:@[@"取消", @"跳转VC2"]  buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
-        self.alertView4 = tempView;
         /*! 自定义按钮文字颜色 */
-        //    _alertView4.buttonTitleColor = [UIColor orangeColor];
+        //    tempView.buttonTitleColor = [UIColor orangeColor];
         /*! 自定义alert的背景图片 */
-        self.alertView4.bgImageName      = @"背景.jpg";
+        tempView.bgImageName      = @"背景.jpg";
         /*! 是否显示动画效果 */
-        self.alertView4.showAnimate    = YES;
-        
+        tempView.showAnimate    = YES;
+        self.alertView4 = tempView;
     } actionClick:^(NSInteger index) {
         BAKit_StrongSelf
+        [self.alertView4 ba_dismissAlertView];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
-            /*! 隐藏alert */
-            //            [weakSelf.alertView4 ba_dismissAlertView];
+            
         }
         else if (index == 1)
         {
@@ -385,8 +357,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
             ViewController2 *vc2 = [ViewController2 new];
             vc2.title = @"alert4";
             [self.navigationController pushViewController:vc2 animated:YES];
-            /*! 隐藏alert */
-            //            [weakSelf.alertView4 ba_dismissAlertView];
         }
     }];
 }

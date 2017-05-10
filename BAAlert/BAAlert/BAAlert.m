@@ -494,8 +494,6 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 #pragma mark 按钮事件
 - (void)buttonClicked:(UIButton *)button
 {
-    [self ba_dismissAlertView];
-    
     BAKit_WeakSelf
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         BAKit_StrongSelf
