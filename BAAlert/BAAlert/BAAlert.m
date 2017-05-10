@@ -930,14 +930,13 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     if (!_alertWindow)
     {
         _alertWindow = [UIApplication sharedApplication].keyWindow;
-        self.alertWindow.backgroundColor = BAKit_COLOR_Translucent;
         
-        if (_alertWindow.windowLevel != UIWindowLevelNormal)
+        if (self.alertWindow.windowLevel != UIWindowLevelNormal)
         {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"windowLevel == %ld AND hidden == 0 " , UIWindowLevelNormal];
-            _alertWindow = [[UIApplication sharedApplication].windows filteredArrayUsingPredicate:predicate].firstObject;
+            self.alertWindow = [[UIApplication sharedApplication].windows filteredArrayUsingPredicate:predicate].firstObject;
         }
-        return _alertWindow;
+        self.alertWindow.backgroundColor = BAKit_COLOR_Translucent;
     }
     return _alertWindow;
 }
