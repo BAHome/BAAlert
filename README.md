@@ -7,6 +7,11 @@
 ## 更新提示：【倒叙更新】
 
 最新更新时间：2017-05-10 【倒叙】 <br>
+最新Version：【Version：1.1.6】 <br>
+更新内容： <br>
+1.1.6.1、修复 两个按钮的情况下，button title 只显示最后一个title 的bug！  <br>
+
+最新更新时间：2017-05-10 【倒叙】 <br>
 最新Version：【Version：1.1.5】 <br>
 更新内容： <br>
 1.1.5.1、删除原有封装内部按钮点击事件中 ba_dismissAlertView 方法，此方法可在外部自由调用  <br>
