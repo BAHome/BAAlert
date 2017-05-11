@@ -426,7 +426,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
                 [self addButton:button_frame title:_buttonTitleArray[i] tag:i titleColor:_buttonTitleColorArray[i]];
             }
             
-            [self addLine:CGRectMake(0+buttonWidth/2-.5, top, 0.5, buttonHeight) toView:_containerView];
+            [self addLine:CGRectMake(buttonWidth/2-.5, top, 0.5, buttonHeight) toView:_containerView];
         }
         else
         {
