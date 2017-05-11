@@ -415,13 +415,13 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     {
         if (1 == _buttonTitleArray.count)
         {
-            [self addButton:CGRectMake(0, top, buttonWidth, buttonHeight) title:[_buttonTitleArray firstObject] tag:(0)  titleColor:_buttonTitleColorArray[0]];
+            [self addButton:CGRectMake(0, top, buttonWidth, buttonHeight) title:_buttonTitleArray[0] tag:(0)  titleColor:_buttonTitleColorArray[0]];
         }
         else if (2 == _buttonTitleArray.count)
         {
             for (NSInteger i = 0; i < _buttonTitleArray.count; i ++)
             {
-                CGRect button_frame = CGRectMake(0+ (buttonWidth/2) * i, top, buttonWidth/2, buttonHeight);
+                CGRect button_frame = CGRectMake(buttonWidth/2 * i, top, buttonWidth/2, buttonHeight);
             
                 [self addButton:button_frame title:_buttonTitleArray[i] tag:i titleColor:_buttonTitleColorArray[i]];
             }
@@ -798,7 +798,6 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     CGFloat min_y = 0;
     CGFloat min_w = 0;
     CGFloat min_h = 0;
-    CGFloat min_inset = kBAAlert_Padding;
     _scroll_bottom = 0;
     
     _maxContent_Width = self.view_width - 50 * BAKit_ScaleXAndWidth * 2;
@@ -853,7 +852,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     self.containerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
     self.containerView.center = self.center;
     
-    min_y = min_inset;
+    min_y = kBAAlert_Padding;
     min_h = MIN(_scroll_bottom, CGRectGetHeight(self.containerView.frame) - 2 * kBAAlert_Padding - _button_totalHeight);
     self.scrollView.frame = CGRectMake(min_x, min_y, min_w, min_h);
     self.scrollView.contentSize = CGSizeMake(_maxContent_Width, _scroll_bottom);
