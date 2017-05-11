@@ -866,11 +866,11 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     _scroll_bottom = CGRectGetMaxY(self.messageLabel.frame) + kBAAlert_Padding;
 
     min_x = 0;
-    min_y = 50;
+    min_y = 0;
     min_w = _maxContent_Width;
     min_h = MIN(MAX(_scroll_bottom + 2 * kBAAlert_Padding + _button_totalHeight, 2 * kBAAlert_Radius + kBAAlert_Padding), _maxContent_Height);
     
-    self.containerView.frame = CGRectMake(min_x, 0, min_w, min_h);
+    self.containerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
     self.containerView.center = self.center;
     
     min_h = MIN(_scroll_bottom, CGRectGetHeight(self.containerView.frame) - 2 * kBAAlert_Padding - _button_totalHeight);
