@@ -851,10 +851,13 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     self.imageView.frame = CGRectMake(min_x, min_y, min_w, min_h);
 
     // message
-    min_y = CGRectGetMaxY(self.imageView.frame) + kBAAlert_Padding;
     if (min_h <= 0)
     {
         min_y = CGRectGetMaxY(self.titleLabel.frame) + kBAAlert_Padding * 2;
+    }
+    else
+    {
+        min_y = CGRectGetMaxY(self.imageView.frame) + kBAAlert_Padding;
     }
     CGSize messageLabel_size = ba_LabelSizeWithTextAndWidthAndFont(self.messageLabel.text, _maxContent_Width - kBAAlert_Padding * 2, self.messageLabel.font);
     min_w = messageLabel_size.width;
