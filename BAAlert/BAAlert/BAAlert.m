@@ -457,26 +457,18 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     button.tag             = tag;
     
     [button setTitle:title forState:UIControlStateNormal];
-
-    if (titleColor)
-    {
-        [button setTitleColor:titleColor forState:UIControlStateNormal];
-    }
-    else
-    {
-        [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    }
+    [button setTitleColor:titleColor forState:UIControlStateNormal];
     
     if (self.bgImageName)
     {
         [button setBackgroundImage:[self imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[self imageWithColor:BAKit_COLOR(135, 140, 145, 0.45)] forState:UIControlStateHighlighted];
     }
     else
     {
         [button setBackgroundImage:[self imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[self imageWithColor:BAKit_COLOR(135, 140, 145, 0.45)] forState:UIControlStateHighlighted];
     }
+    [button setBackgroundImage:[self imageWithColor:BAKit_COLOR(135, 140, 145, 0.45)] forState:UIControlStateHighlighted];
+
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.containerView addSubview:button];
     [self.buttonArray addObject:button];
@@ -494,28 +486,16 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 #pragma mark 按钮事件
 - (void)buttonClicked:(UIButton *)button
 {
-    BAKit_WeakSelf
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BAKit_StrongSelf
-        if (self.buttonActionBlock)
-        {
-            self.buttonActionBlock(button.tag);
-        }
-    });
+    if (self.buttonActionBlock)
+    {
+        self.buttonActionBlock(button.tag);
+    }
 }
 
 #pragma mark 纯颜色转图片
 - (UIImage *)imageWithColor:(UIColor *)color
 {
-    CGRect rect          = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    
-    CGContextFillRect(context, rect);
-    UIImage *image       = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
+    UIImage *image = [self imageWithColor:color andSize:CGSizeMake(1.0f, 1.0f)];
     return image;
 }
 
@@ -873,8 +853,9 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     self.containerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
     self.containerView.center = self.center;
     
+    min_y = min_inset;
     min_h = MIN(_scroll_bottom, CGRectGetHeight(self.containerView.frame) - 2 * kBAAlert_Padding - _button_totalHeight);
-    self.scrollView.frame = CGRectMake(min_x, min_inset, min_w, min_h);
+    self.scrollView.frame = CGRectMake(min_x, min_y, min_w, min_h);
     self.scrollView.contentSize = CGSizeMake(_maxContent_Width, _scroll_bottom);
     
     [self loadButtons];
