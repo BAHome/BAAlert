@@ -581,14 +581,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     
     if (self.isShowAnimate)
     {
-        if (self.alertType == BAAlertTypeNormal)
-        {
-            [self showAnimationWithView:self.containerView];
-        }
-        else if (self.alertType == BAAlertTypeCustom)
-        {
-            [self showAnimationWithView:self.customView];
-        }
+        [self showAnimationWithView:(self.alertType == BAAlertTypeNormal) ? self.containerView:self.customView];
     }
 }
 
