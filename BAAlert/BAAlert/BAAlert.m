@@ -221,7 +221,6 @@
 #define BAKit_ScaleXAndWidth    SCREENWIDTH/BAKit_BaseScreenWidth
 #define BAKit_ScaleYAndHeight   SCREENHEIGHT/BAKit_BaseScreenHeight
 
-#define kBAAlert_Width             SCREENWIDTH - 50 * 2
 #define kBAAlert_Padding           10
 #define kBAAlert_Radius            10
 #define kBAAlert_ButtonHeight      40
@@ -801,7 +800,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     _scroll_bottom = 0;
     
     _maxContent_Width = self.view_width - 50 * BAKit_ScaleXAndWidth * 2;
-    _maxContent_Height = self.view_height - 50 * BAKit_ScaleYAndHeight * 2;
+    _maxContent_Height = self.view_height - 20 * BAKit_ScaleYAndHeight * 2;
     _button_totalHeight = kBAAlert_ButtonHeight*((_buttonTitleArray.count>2||_buttonTitleArray.count==0)?_buttonTitleArray.count:1);
 
     // 标题
