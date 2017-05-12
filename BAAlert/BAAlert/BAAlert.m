@@ -562,7 +562,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     [self ba_layoutSubViews];
 
     /*! 设置默认样式为： */
-    if (self.isShowAnimate)
+    if (self.isShowAnimate && !self.animatingStyle)
     {
         _animatingStyle = BAAlertAnimatingStyleScale;
     }
@@ -573,7 +573,10 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     else
     {
-        NSLog(@"您没有开启动画，也没有设置动画样式，默认为没有动画！");
+        if (!self.animatingStyle)
+        {
+            NSLog(@"您没有开启动画，也没有设置动画样式，默认为没有动画！");
+        }
     }
     
     if (self.isShowAnimate)

@@ -303,10 +303,10 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         /*! 自定义alert的背景图片 */
         tempView.bgImageName      = @"背景.jpg";
         /*! 开启动画，并且设置动画样式，默认：1 */
-        //    tempView.isShowAnimate = YES;
+        tempView.showAnimate = YES;
         
         /*! 没有开启动画，直接进出场动画样式，默认开启动画 */
-        tempView.animatingStyle  = BAAlertAnimatingStyleFall;
+//        tempView.animatingStyle  = BAAlertAnimatingStyleFall;
         
         self.alertView3 = tempView;
     } actionClick:^(NSInteger index) {
