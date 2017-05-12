@@ -381,10 +381,10 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardHiddenAction:) name:UIKeyboardWillHideNotification object:nil];
     }
-    else if (self.alertType == BAAlertTypeNormal)
-    {
+//    else if (self.alertType == BAAlertTypeNormal)
+//    {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationRotateAction:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    }
+//    }
 }
 
 #pragma mark - 系统默认 alert

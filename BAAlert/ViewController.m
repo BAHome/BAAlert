@@ -272,7 +272,8 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         
         /*! 是否开启进出场动画 默认：NO，如果 YES ，并且同步设置进出场动画枚举为默认值：1 */
         tempView.showAnimate = YES;
-        
+        tempView.animatingStyle  = BAAlertAnimatingStyleShake;
+
         self.alertView2 = tempView;
 
     } actionClick:^(NSInteger index) {
