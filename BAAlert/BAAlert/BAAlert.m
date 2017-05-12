@@ -354,18 +354,9 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
         _buttonTitleColorArray = [NSArray arrayWithArray:buttonTitlesColor];
         self.alertType = BAAlertTypeNormal;
         
-        [self setupUI];
+        [self setupCommonUI];
     }
     return self;
-}
-
-- (void)setupUI
-{
-    self.containerView.hidden = NO;
-    self.scrollView.hidden = NO;
-    self.titleLabel.hidden = NO;
-    
-    [self setupCommonUI];
 }
 
 - (void)setupCommonUI
