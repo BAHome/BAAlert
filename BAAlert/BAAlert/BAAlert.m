@@ -592,14 +592,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 {
     if (self.isShowAnimate)
     {
-        if (self.alertType == BAAlertTypeNormal)
-        {
-            [self dismissAnimationView:self.containerView];
-        }
-        else
-        {
-            [self dismissAnimationView:self.customView];
-        }
+        [self dismissAnimationView:(self.alertType == BAAlertTypeNormal) ? self.containerView:self.customView];
     }
     else
     {
@@ -650,28 +643,24 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     {
         [animationView scaleAnimationDismissFinishAnimation:^{
             BAKit_StrongSelf
-            [self performSelector:@selector(ba_removeSelf)];
+            [self ba_removeSelf];
         }];
     }
     else if (self.animatingStyle == BAAlertAnimatingStyleShake)
     {
         [animationView.layer floatAnimationWithDuration:0.35f finishAnimation:^{
             BAKit_StrongSelf
-            [self performSelector:@selector(ba_removeSelf)];
+            [self ba_removeSelf];
         }];
     }
     else if (self.animatingStyle == BAAlertAnimatingStyleFall)
     {
         [animationView.layer floatAnimationWithDuration:0.35f finishAnimation:^{
             BAKit_StrongSelf
-            [self performSelector:@selector(ba_removeSelf)];
+            [self ba_removeSelf];
         }];
     }
-    else
-    {
-        NSLog(@"您没有选择出场动画样式：animatingStyle，默认为没有动画样式！");
-        [self performSelector:@selector(ba_removeSelf)];
-    }
+    
 }
 
 #pragma mark - 清除所有视图
