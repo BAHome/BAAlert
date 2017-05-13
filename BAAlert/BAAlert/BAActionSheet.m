@@ -377,7 +377,6 @@ static NSString * const kCellID = @"BAActionSheetCell";
         _tableView.scrollEnabled   = NO;
         _tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.f];
-        self.backgroundColor = BAKit_COLOR_Translucent;
         [self addSubview:_tableView];
         
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlertBundle" withExtension:@"bundle"];
