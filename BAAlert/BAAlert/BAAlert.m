@@ -284,43 +284,54 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 @property (nonatomic, strong) UIImageView *blurImageView;
 
 @property (nonatomic, assign) BAAlertBlurEffectStyle current_blurEffectStyle;
+@property (nonatomic, copy) BAAlert_ButtonActionBlock actionBlock;
 
 @end
 
 @implementation BAAlert
 
 #pragma mark - 快速创建方法
-+ (void)ba_showCustomView:(UIView *)customView
-            configuration:(void (^)(BAAlert *tempView)) configuration
++ (void)ba_alertShowCustomView:(UIView *)customView
+                 configuration:(BAAlert_ConfigBlock) configuration
 {
-    BAAlert *temp = [[BAAlert alloc] initWithCustomView:customView];
+    BAAlert *tempView = [[BAAlert alloc] initWithCustomView:customView];
     if (configuration)
     {
-        configuration(temp);
+        configuration(tempView);
     }
-    [temp ba_showAlertView];
+    [tempView ba_alertShow];
 }
 
-+ (void)ba_showAlertWithTitle:(NSString *)title
+/*!
+ *  创建一个类似于系统的alert
+ *
+ *  @param title         标题：可空
+ *  @param message       消息内容：可空
+ *  @param image         图片：可空
+ *  @param buttonTitleArray  按钮标题：不可空
+ *  @param buttonTitleColorArray  按钮标题颜色：可空，默认蓝色
+ *  @param configuration 属性配置：如 bgColor、buttonTitleColor、isTouchEdgeHide...
+ *  @param actionBlock        按钮的点击事件处理
+ */
++ (void)ba_alertShowWithTitle:(NSString *)title
                       message:(NSString *)message
                         image:(UIImage *)image
-                 buttonTitles:(NSArray *)buttonTitles
-            buttonTitlesColor:(NSArray <UIColor *>*)buttonTitlesColor
-                configuration:(void (^)(BAAlert *tempView)) configuration
-                  actionClick:(void (^)(NSInteger index)) action
+             buttonTitleArray:(NSArray <NSString *>*)buttonTitleArray
+        buttonTitleColorArray:(NSArray <UIColor *>*)buttonTitleColorArray
+                configuration:(BAAlert_ConfigBlock)configuration
+                  actionBlock:(BAAlert_ButtonActionBlock)actionBlock
 {
-    BAAlert *temp = [[BAAlert alloc] ba_showTitle:title
+    BAAlert *tempView = [[BAAlert alloc] ba_showTitle:title
                                           message:message
                                             image:image
-                                     buttonTitles:buttonTitles
-                                buttonTitlesColor:buttonTitlesColor];
+                                     buttonTitles:buttonTitleArray
+                                buttonTitlesColor:buttonTitleColorArray];
     if (configuration)
     {
-        configuration(temp);
+        configuration(tempView);
     }
-    [temp ba_showAlertView];
-    
-    temp.buttonActionBlock = action;
+    [tempView ba_alertShow];
+    tempView.actionBlock = actionBlock;
 }
 
 #pragma mark - ***** 初始化自定义View
@@ -363,7 +374,6 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 {
     self.bgColor = BAKit_COLOR_Translucent;
     self.blurImageView.hidden = NO;
-    self.blurEffectStyle = BAAlertBlurEffectStyleLight;
     
     if (self.alertType == BAAlertTypeCustom)
     {
@@ -474,9 +484,11 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 #pragma mark 按钮事件
 - (void)buttonClicked:(UIButton *)button
 {
-    if (self.buttonActionBlock)
+    [self endEditing:YES];
+    
+    if (self.actionBlock)
     {
-        self.buttonActionBlock(button.tag);
+        self.actionBlock(button.tag);
     }
 }
 
@@ -545,7 +557,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 /*!
  *  视图显示
  */
-- (void)ba_showAlertView
+- (void)ba_alertShow
 {
     [self.alertWindow addSubview:self];
     [self ba_layoutSubViews];
@@ -577,7 +589,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 /*!
  *  视图消失
  */
-- (void)ba_dismissAlertView
+- (void)ba_alertHidden
 {
     if (self.isShowAnimate)
     {
@@ -732,7 +744,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     if ([view isKindOfClass:[self class]])
     {
-        [self ba_dismissAlertView];
+        [self ba_alertHidden];
     }
 }
 
@@ -747,9 +759,12 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     self.frame = self.window.bounds;
     self.alertWindow.frame = self.window.bounds;
     
-    self.blurImageView.image = nil;
-    self.blurImageView.frame = [UIScreen mainScreen].bounds;
-    self.current_blurEffectStyle = self.blurEffectStyle;
+    if (self.blurEffectStyle)
+    {
+        self.blurImageView.image = nil;
+        self.blurImageView.frame = [UIScreen mainScreen].bounds;
+        self.current_blurEffectStyle = self.blurEffectStyle;
+    }
 
     self.view_width = [UIScreen mainScreen].bounds.size.width;
     self.view_height = [UIScreen mainScreen].bounds.size.height;
@@ -760,6 +775,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     else if (self.alertType == BAAlertTypeCustom)
     {
+        NSLog(@"【 BAAlert 】注意：【自定义 alert 只适用于竖屏状态！】");
         self.customView.frame = self.customView_frame;
     }
 }

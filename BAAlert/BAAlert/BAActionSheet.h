@@ -9,37 +9,12 @@
 
 
 #import <UIKit/UIKit.h>
+#import "BAAlert_Config.h"
 
-typedef NS_ENUM(NSInteger, BAActionSheetStyle) {
-    /*!
-     *  普通样式
-     */
-    BAActionSheetStyleNormal = 1,
-    /*!
-     *  带标题样式
-     */
-    BAActionSheetStyleTitle,
-    /*!
-     *  带图片和标题样式
-     */
-    BAActionSheetStyleImageAndTitle,
-    /*!
-     *  带图片样式
-     */
-    BAActionSheetStyleImage,
-};
+@class BAActionSheet;
 
-/*! 进出场动画枚举 默认：1 */
-typedef NS_ENUM(NSUInteger, BAActionSheetAnimatingStyle) {
-    /*! 缩放显示动画 */
-    BAActionSheetAnimatingStyleScale = 1,
-    /*! 晃动动画 */
-    BAActionSheetAnimatingStyleShake,
-    /*! 天上掉下动画 / 上升动画 */
-    BAActionSheetAnimatingStyleFall,
-};
+typedef void(^BAActionSheet_ConfigBlock)(BAActionSheet *tempView);
 
-typedef void(^ButtonActionBlock)(NSInteger index);
 
 @interface BAActionSheet : UIView
 
@@ -50,29 +25,31 @@ typedef void(^ButtonActionBlock)(NSInteger index);
 @property (nonatomic, assign, getter=isShowAnimate) BOOL showAnimate;
 
 /*! 进出场动画枚举 默认：1 ，并且默认开启动画开关 */
-@property (nonatomic, assign) BAActionSheetAnimatingStyle animatingStyle;
-
+@property (nonatomic, assign) BAAlertAnimatingStyle animatingStyle;
 
 /*!
  *
+ *  @param title             标题内容(可空)
  *  @param style             样式
  *  @param contentArray      选项数组(NSString数组)
  *  @param imageArray        图片数组(UIImage数组)
- *  @param redIndex          特别颜色的下标数组(NSNumber数组)
- *  @param title             标题内容(可空)
- *  @param clikckButtonIndex block回调点击的选项
+ *  @param contentColorArray 内容颜色数组
+ *  @param titleColor    titleColor
+ *  @param configuration 属性配置：如 bgColor、buttonTitleColor、isTouchEdgeHide...
+ *  @param actionBlock  block回调点击的选项
  */
-+ (void)ba_showBAActionSheetWithStyle:(BAActionSheetStyle)style
-                         contentArray:(NSArray<NSString *> *)contentArray
-                           imageArray:(NSArray<UIImage *> *)imageArray
-                             redIndex:(NSInteger)redIndex
-                                title:(NSString *)title
-                        configuration:(void (^)(BAActionSheet *tempView)) configuration
-                    clikckButtonIndex:(ButtonActionBlock)clikckButtonIndex;
++ (void)ba_actionSheetShowWithTitle:(NSString *)title
+                              style:(BAActionSheetStyle)style
+                       contentArray:(NSArray <NSString *> *)contentArray
+                         imageArray:(NSArray <UIImage *> *)imageArray
+                         titleColor:(UIColor *)titleColor
+                  contentColorArray:(NSArray <UIColor *> *)contentColorArray
+                      configuration:(BAActionSheet_ConfigBlock)configuration
+                        actionBlock:(BAAlert_ButtonActionBlock)actionBlock;
 
 /*!
  *  隐藏 BAActionSheet
  */
-- (void)ba_dismissBAActionSheet;
+- (void)ba_actionSheetHidden;
 
 @end

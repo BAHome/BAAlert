@@ -11,7 +11,7 @@
 #import "ViewController.h"
 
 #import "ViewController2.h"
-#import "VerCodeAlertView.h"
+#import "CustomView.h"
 
 /*! 使用方法一：文件夹拖入 */
 #import "BAAlert_OC.h"
@@ -19,6 +19,7 @@
 ///*! 使用方法二：pod */
 //#import <BAAlert_OC.h>
 
+static NSString * const title0 = @"温馨提示";
 static NSString * const titleMsg0 = @"欢迎使用 iPhone SE，迄今最高性能的 4 英寸 iPhone。在打造这款手机时，我们在深得人心的 4 英寸设计基础上，从里到外重新构想。它所采用的 A9 芯片，正是在 iPhone 6s 上使用的先进芯片。1200 万像素的摄像头能拍出令人叹为观止的精彩照片和 4K 视频，而 Live Photos 则会让你的照片栩栩如生。这一切，成就了一款外形小巧却异常强大的 iPhone。\n对于 MacBook，我们给自己设定了一个几乎不可能实现的目标：在有史以来最为轻盈纤薄的 Mac 笔记本电脑上，打造全尺寸的使用体验。这就要求每个元素都必须重新构想，不仅令其更为纤薄轻巧，还要更加出色。最终我们带来的，不仅是一部新款的笔记本电脑，更是一种对笔记本电脑的前瞻性思考。现在，有了第六代 Intel 处理器、提升的图形处理性能、高速闪存和最长可达 10 小时的电池使用时间*，MacBook 的强大更进一步。\n欢迎使用 iPhone SE，迄今最高性能的 4 英寸 iPhone。在打造这款手机时，我们在深得人心的 4 英寸设计基础上，从里到外重新构想。它所采用的 A9 芯片，正是在 iPhone 6s 上使用的先进芯片。1200 万像素的摄像头能拍出令人叹为观止的精彩照片和 4K 视频，而 Live Photos 则会让你的照片栩栩如生。这一切，成就了一款外形小巧却异常强大的 iPhone。\n对于 MacBook，我们给自己设定了一个几乎不可能实现的目标：在有史以来最为轻盈纤薄的 Mac 笔记本电脑上，打造全尺寸的使用体验。这就要求每个元素都必须重新构想，不仅令其更为纤薄轻巧，还要更加出色。最终我们带来的，不仅是一部新款的笔记本电脑，更是一种对笔记本电脑的前瞻性思考。现在，有了第六代 Intel 处理器、提升的图形处理性能、高速闪存和最长可达 10 小时的电池使用时间*，MacBook 的强大更进一步。";
 
 static NSString * const titleMsg1 = @"欢迎使用 iPhone SE，迄今最高性能的 4 英寸 iPhone。在打造这款手机时，我们在深得人心的 4 英寸设计基础上，从里到外重新构想。它所采用的 A9 芯片，正是在 iPhone 6s 上使用的先进芯片。1200 万像素的摄像头能拍出令人叹为观止的精彩照片和 4K 视频，而 Live Photos 则会让你的照片栩栩如生。这一切，成就了一款外形小巧却异常强大的 iPhone。";
@@ -38,10 +39,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 @property (nonatomic, strong) BAActionSheet  *actionSheet2;
 @property (nonatomic, strong) BAActionSheet  *actionSheet3;
 
-@property (nonatomic, strong) UIView         *viewPwdBgView;
-@property (nonatomic, strong) UITextField    *pwdTextField;
-@property (nonatomic,strong ) UIButton       *chooseBtn;
-@property (nonatomic,strong ) UILabel        *titleLabel;
+@property(nonatomic, strong) CustomView *customView;
 
 @property (strong, nonatomic) NSArray        *dataArray;
 
@@ -100,54 +98,41 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         switch ( indexPath.row ) {
             case 0:
             {
-                [BAActionSheet ba_showBAActionSheetWithStyle:BAActionSheetStyleNormal
-                                              contentArray:@[@"测试1",@"测试2",@"测试3"]
-                                                imageArray:nil
-                                                  redIndex:1
-                                                     title:nil
-                                             configuration:^(BAActionSheet *tempView) {
-                                                 BAKit_StrongSelf
-                                                 self.actionSheet1 = tempView;
-                                                 self.actionSheet1.isTouchEdgeHide = YES;
-                                             } clikckButtonIndex:^(NSInteger index) {
-                                                 BAKit_StrongSelf
-                                                 NSLog(@"你点击了第 %ld 行！",(long)index);
-                                                 [self.actionSheet1 ba_dismissBAActionSheet];
-                                             }];
+                [BAActionSheet ba_actionSheetShowWithTitle:nil style:BAActionSheetStyleNormal contentArray:@[@"测试1",@"测试2",@"测试3"] imageArray:nil titleColor:nil contentColorArray:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor]] configuration:^(BAActionSheet *tempView) {
+                    BAKit_StrongSelf
+                    tempView.isTouchEdgeHide = YES;
+                    tempView.animatingStyle = BAAlertAnimatingStyleScale;
+                    self.actionSheet1 = tempView;
+                } actionBlock:^(NSInteger index) {
+                    NSLog(@"你点击了第 %ld 行！",(long)index);
+                }];
             }
                 break;
             case 1:
             {
-                [BAActionSheet ba_showBAActionSheetWithStyle:BAActionSheetStyleTitle
-                                              contentArray:@[@"测试1",@"测试2",@"测试3"]
-                                                imageArray:nil
-                                                  redIndex:1
-                                                     title:@"测试带标题的ActionSheet"
-                                             configuration:^(BAActionSheet *tempView) {
-                                                 BAKit_StrongSelf
-                                                 self.actionSheet1 = tempView;
-                                             } clikckButtonIndex:^(NSInteger index) {
-                                                 BAKit_StrongSelf
-                                                 NSLog(@"你点击了第 %ld 行！",(long)index);
-                                                 [self.actionSheet1 ba_dismissBAActionSheet];
-                                             }];
+                [BAActionSheet ba_actionSheetShowWithTitle:@"测试带标题的 ActionSheet" style:BAActionSheetStyleTitle contentArray:@[@"测试1",@"测试2",@"测试3"] imageArray:nil titleColor:[UIColor greenColor] contentColorArray:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor], [UIColor purpleColor]] configuration:^(BAActionSheet *tempView) {
+                    BAKit_StrongSelf
+                    tempView.isTouchEdgeHide = YES;
+                    self.actionSheet1 = tempView;
+                } actionBlock:^(NSInteger index) {
+                    BAKit_StrongSelf
+                    NSLog(@"你点击了第 %ld 行！",(long)index);
+                    [self.actionSheet1 ba_actionSheetHidden];
+                }];
             }
                 break;
             case 2:
             {
-                [BAActionSheet ba_showBAActionSheetWithStyle:BAActionSheetStyleImageAndTitle
-                                              contentArray:@[@"测试1",@"测试2",@"测试3"]
-                                                imageArray:@[[UIImage imageNamed:@"123.png"],[UIImage imageNamed:@"背景.jpg"],[UIImage imageNamed:@"美女.jpg"]]
-                                                  redIndex:1
-                                                     title:@"测试带标题和图片的ActionSheet"
-                                             configuration:^(BAActionSheet *tempView) {
-                                                 BAKit_StrongSelf
-                                                 self.actionSheet1 = tempView;
-                                             } clikckButtonIndex:^(NSInteger index) {
-                                                 BAKit_StrongSelf
-                                                 NSLog(@"你点击了第 %ld 行！",(long)index);
-                                                 [self.actionSheet1 ba_dismissBAActionSheet];
-                                             }];
+                [BAActionSheet ba_actionSheetShowWithTitle:@"测试带标题的 ActionSheet" style:BAActionSheetStyleImageAndTitle contentArray:@[@"测试1",@"测试2",@"测试3"] imageArray:@[[UIImage imageNamed:@"123.png"],[UIImage imageNamed:@"背景.jpg"],[UIImage imageNamed:@"美女.jpg"]] titleColor:nil contentColorArray:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAActionSheet *tempView) {
+                    BAKit_StrongSelf
+                    tempView.isTouchEdgeHide = YES;
+                    tempView.animatingStyle = BAAlertAnimatingStyleScale;
+                    self.actionSheet1 = tempView;
+                } actionBlock:^(NSInteger index) {
+                    BAKit_StrongSelf
+                    NSLog(@"你点击了第 %ld 行！",(long)index);
+                    [self.actionSheet1 ba_actionSheetHidden];
+                }];
             }
                 break;
             default:
@@ -226,36 +211,30 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 {
     BAKit_WeakSelf
     /*! 第一种封装使用示例 */
-    [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg0 image:nil buttonTitles:@[@"取消",@"确定",@"确定2",@"确定3"] buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor], [UIColor purpleColor]] configuration:^(BAAlert *temp) {
-        
+    [BAAlert ba_alertShowWithTitle:title0 message:titleMsg0 image:nil buttonTitleArray:@[@"取消",@"确定",@"确定2",@"确定3"] buttonTitleColorArray:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor], [UIColor purpleColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
         //        temp.bgColor       = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.3];
         /*! 开启边缘触摸隐藏alertView */
-        temp.isTouchEdgeHide = NO;
+        tempView.isTouchEdgeHide = NO;
         /*! 添加高斯模糊的样式 */
-        temp.blurEffectStyle = BAAlertBlurEffectStyleLight;
+        tempView.blurEffectStyle = BAAlertBlurEffectStyleLight;
         /*! 开启动画 */
         //        temp.isShowAnimate   = YES;
         //        /*! 进出场动画样式 默认为：1 */
         //        temp.animatingStyle  = 1;
         
-        self.alertView1 = temp;
-    }actionClick:^(NSInteger index) {
+        self.alertView1 = tempView;
+    } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
-        [self.alertView1 ba_dismissAlertView];
-        if (index == 0)
-        {
-            NSLog(@"点击了取消按钮！");
-            /*! 隐藏alert */
-            //            [weakSelf.alertView1 ba_dismissAlertView];
-        }
-        else if (index == 1)
+        [self.alertView1 ba_alertHidden];
+        if (index == 1)
         {
             NSLog(@"点击了确定按钮！");
             ViewController2 *vc2 = [ViewController2 new];
             vc2.title = @"alert1";
             [self.navigationController pushViewController:vc2 animated:YES];
         }
+
     }];
 
 }
@@ -264,7 +243,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 {
 //    /*! 2、自定义按钮颜色 */
     BAKit_WeakSelf
-    [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg2 image:nil buttonTitles:@[@"取消", @"跳转VC2"] buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
+    [BAAlert ba_alertShowWithTitle:@"温馨提示：" message:titleMsg2 image:nil buttonTitleArray:@[@"取消", @"跳转VC2"] buttonTitleColorArray:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
         /*! 自定义按钮文字颜色 */
         //    tempView.buttonTitleColor = [UIColor orangeColor];
@@ -276,9 +255,9 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 
         self.alertView2 = tempView;
 
-    } actionClick:^(NSInteger index) {
+    } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
-        [self.alertView2 ba_dismissAlertView];
+        [self.alertView2 ba_alertHidden];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
@@ -297,7 +276,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 {
     /*! 3、自定义背景图片 */
     BAKit_WeakSelf
-    [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg1 image:nil buttonTitles:@[@"取消", @"确定"] buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
+    [BAAlert ba_alertShowWithTitle:@"温馨提示：" message:titleMsg1 image:nil buttonTitleArray:@[@"取消", @"确定"] buttonTitleColorArray:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
         /*! 自定义按钮文字颜色 */
         //    tempView.buttonTitleColor = [UIColor orangeColor];
@@ -310,9 +289,9 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         tempView.animatingStyle  = BAAlertAnimatingStyleFall;
         
         self.alertView3 = tempView;
-    } actionClick:^(NSInteger index) {
+    } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
-        [self.alertView3 ba_dismissAlertView];
+        [self.alertView3 ba_alertHidden];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
@@ -335,7 +314,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 {
     /*! 4、内置图片和文字，可滑动查看 */
     BAKit_WeakSelf
-    [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:titleMsg1 image:[UIImage imageNamed:@"美女.jpg"] buttonTitles:@[@"取消", @"跳转VC2"]  buttonTitlesColor:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
+    [BAAlert ba_alertShowWithTitle:@"温馨提示：" message:titleMsg1 image:[UIImage imageNamed:@"美女.jpg"] buttonTitleArray:@[@"取消", @"跳转VC2"] buttonTitleColorArray:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
         /*! 自定义按钮文字颜色 */
         //    tempView.buttonTitleColor = [UIColor orangeColor];
@@ -344,9 +323,9 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         /*! 是否显示动画效果 */
         tempView.showAnimate    = YES;
         self.alertView4 = tempView;
-    } actionClick:^(NSInteger index) {
+    } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
-        [self.alertView4 ba_dismissAlertView];
+        [self.alertView4 ba_alertHidden];
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
@@ -366,114 +345,25 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 {
     /*! 5、完全自定义alert */
     
-    BAKit_WeakSelf
-    [self setViewPwdBgView];
     
-    [BAAlert ba_showCustomView:self.viewPwdBgView configuration:^(BAAlert *tempView) {
+    self.customView = [CustomView new];
+    self.customView.frame = CGRectMake(50, SCREENHEIGHT - 300, SCREENWIDTH - 50 * 2, 162);
+
+    BAKit_WeakSelf
+    [BAAlert ba_alertShowCustomView:self.customView configuration:^(BAAlert *tempView) {
         BAKit_StrongSelf
         tempView.isTouchEdgeHide = YES;
         tempView.animatingStyle = BAAlertAnimatingStyleScale;
         self.alertView5 = tempView;
     }];
-}
-
-#pragma mark - 自定义视图
-- (void)setViewPwdBgView
-{
-    _viewPwdBgView                         = [UIView new];
-    _viewPwdBgView.frame                   = CGRectMake(30, 300, SCREENWIDTH - 60, 160);
     
-    _viewPwdBgView.backgroundColor         = [UIColor whiteColor];
-    _viewPwdBgView.layer.masksToBounds     = YES;
-    _viewPwdBgView.layer.cornerRadius      = 10.0f;
-    
-    CGFloat buttonWith                     = (SCREENWIDTH - 60)/2 - 0.5;
-    CGFloat buttonHeight                   = 40;
-    
-    UILabel *titleLabel                    = [UILabel new];
-    titleLabel.frame                       = CGRectMake(0, 0, _viewPwdBgView.frame.size.width, buttonHeight);
-    titleLabel.textAlignment               = NSTextAlignmentCenter;
-    titleLabel.font                        = [UIFont systemFontOfSize:18];
-    titleLabel.text                        = @"请补全好友姓名，确保信息安全";
-    //
-    UIView *lineView1                      = [UIView new];
-    lineView1.frame                        = CGRectMake(0, CGRectGetMaxY(titleLabel.frame), _viewPwdBgView.frame.size.width, 1);
-    lineView1.backgroundColor              = [UIColor lightGrayColor];
-    
-    _pwdTextField                          = [UITextField new];
-    _pwdTextField.frame                    = CGRectMake(_viewPwdBgView.frame.size.width/4, CGRectGetMaxY(lineView1.frame) + 20,  100, buttonHeight);
-    _pwdTextField.borderStyle              = UITextBorderStyleRoundedRect;
-    _pwdTextField.textAlignment            = NSTextAlignmentCenter;
-    _pwdTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    
-    UILabel *textView                      = [UILabel new];
-    textView.font                          = [UIFont boldSystemFontOfSize:18];
-    textView.frame                         = CGRectMake(CGRectGetMaxX(_pwdTextField.frame), _pwdTextField.frame.origin.y, _viewPwdBgView.frame.size.width - _pwdTextField.frame.origin.x - 15, buttonHeight);
-    //
-    UIView *lineView2                      = [UIView new];
-    lineView2.frame                        = CGRectMake(0, _viewPwdBgView.frame.size.height - 41, _viewPwdBgView.frame.size.width, 1);
-    lineView2.backgroundColor              = [UIColor lightGrayColor];
-    
-    UIButton *cancleButton                 = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView2.frame), buttonWith, buttonHeight)];
-    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
-    [cancleButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [cancleButton addTarget:self action:@selector(cancleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *lineView3                      = [UIView new];
-    lineView3.frame                        = CGRectMake(buttonWith, CGRectGetMinY(cancleButton.frame), 1, buttonHeight);
-    lineView3.backgroundColor              = [UIColor lightGrayColor];
-    
-    UIButton *sureButton                   = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lineView3.frame), CGRectGetMinY(cancleButton.frame), buttonWith, buttonHeight)];
-    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
-    [sureButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    [sureButton setBackgroundColor:[UIColor clearColor]];
-    [sureButton addTarget:self action:@selector(cancleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    cancleButton.tag                       = 1;
-    sureButton.tag                         = 2;
-    
-    [_viewPwdBgView addSubview:titleLabel];
-    [_viewPwdBgView addSubview:lineView1];
-    [_viewPwdBgView addSubview:_pwdTextField];
-    [_viewPwdBgView addSubview:textView];
-    [_viewPwdBgView addSubview:lineView2];
-    [_viewPwdBgView addSubview:cancleButton];
-    [_viewPwdBgView addSubview:lineView3];
-    [_viewPwdBgView addSubview:sureButton];
-    
-}
-
-- (void)cancleButtonAction:(UIButton *)sender
-{
-    if (sender.tag == 1)
-    {
-        NSLog(@"点击了取消按钮！");
-        /*! 隐藏alert */
-        [_alertView5 ba_dismissAlertView];
-        [_pwdTextField resignFirstResponder];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else
-    {
-        [_pwdTextField resignFirstResponder];
-        NSLog(@"点击了确定按钮！密码：%@", _pwdTextField.text);
-        
-        //        WEAKSELF;
-        if (_pwdTextField.text.length < 4 || _pwdTextField.text.length > 8 )
+    self.customView.block = ^(NSInteger index) {
+        BAKit_StrongSelf
+        if (index == 1)
         {
-            self.pwdTextField.text = @"";
-            [BAAlert ba_showAlertWithTitle:@"温馨提示：" message:@"请输入正确的密码！" image:nil buttonTitles:@[@"确定"] buttonTitlesColor:@[[UIColor redColor], [UIColor cyanColor]] configuration:^(BAAlert *tempView) {
-                //                weakSelf.alert2 = tempView;
-            } actionClick:^(NSInteger index) {
-                if (1 == index)
-                {
-                    return;
-                }
-            }];
-            return;
+            [self.alertView5 ba_alertHidden];
         }
-        [_pwdTextField resignFirstResponder];
-    }
+    };
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -484,6 +374,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     [super viewDidLayoutSubviews];
     
     self.tableView.frame = self.view.bounds;
+    
 }
 
 #pragma mark - setter / getter

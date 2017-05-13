@@ -26,12 +26,14 @@ static NSString * const kCellID = @"BAActionSheetCell";
 @property (strong, nonatomic) NSArray      *dataArray;
 /*! 图片数组 */
 @property (strong, nonatomic) NSArray      *imageArray;
-/*! 标记颜色是红色的那行 */
-@property (assign, nonatomic) NSInteger    specialIndex;
+/*! 字体颜色数组 */
+@property (strong, nonatomic) NSArray      *contentColorArray;
 /*! 标题 */
 @property (copy, nonatomic  ) NSString     *title;
+@property (strong, nonatomic) UIColor      *titleColor;
+
 /*! 点击事件回调 */
-@property (copy, nonatomic) void(^callback)(NSInteger index);
+@property (nonatomic, copy) BAAlert_ButtonActionBlock actionBlock;
 /*! 自定义样式 */
 @property (assign, nonatomic) BAActionSheetStyle viewStyle;
 
@@ -44,36 +46,37 @@ static NSString * const kCellID = @"BAActionSheetCell";
 
 /*!
  *
+ *  @param title             标题内容(可空)
  *  @param style             样式
  *  @param contentArray      选项数组(NSString数组)
  *  @param imageArray        图片数组(UIImage数组)
- *  @param redIndex          特别颜色的下标数组(NSNumber数组)
- *  @param title             标题内容(可空)
- *  @param clikckButtonIndex block回调点击的选项
+ *  @param contentColorArray 内容颜色数组
+ *  @param titleColor    titleColor
+ *  @param configuration 属性配置：如 bgColor、buttonTitleColor、isTouchEdgeHide...
+ *  @param actionBlock  block回调点击的选项
  */
-+ (void)ba_showBAActionSheetWithStyle:(BAActionSheetStyle)style
-                         contentArray:(NSArray<NSString *> *)contentArray
-                           imageArray:(NSArray<UIImage *> *)imageArray
-                             redIndex:(NSInteger)redIndex
-                                title:(NSString *)title
-                        configuration:(void (^)(BAActionSheet *tempView)) configuration
-                    clikckButtonIndex:(ButtonActionBlock)clikckButtonIndex
++ (void)ba_actionSheetShowWithTitle:(NSString *)title
+                              style:(BAActionSheetStyle)style
+                       contentArray:(NSArray <NSString *> *)contentArray
+                         imageArray:(NSArray <UIImage *> *)imageArray
+                         titleColor:(UIColor *)titleColor
+                  contentColorArray:(NSArray <UIColor *> *)contentColorArray
+                      configuration:(BAActionSheet_ConfigBlock)configuration
+                        actionBlock:(BAAlert_ButtonActionBlock)actionBlock
 {
     BAActionSheet *actionSheet       = [[self alloc] init];
     actionSheet.dataArray            = contentArray;
-    actionSheet.callback             = clikckButtonIndex;
+    actionSheet.actionBlock          = actionBlock;
     actionSheet.viewStyle            = style;
     actionSheet.imageArray           = imageArray;
-    actionSheet.specialIndex         = redIndex;
+    actionSheet.contentColorArray    = contentColorArray;
     actionSheet.title                = title;
+    actionSheet.titleColor = titleColor;
     if (configuration)
     {
         configuration(actionSheet);
     }
-    //    [actionSheet.tableView reloadData];
-    [actionSheet ba_showBAActionSheet];
-    
-    
+    [actionSheet ba_actionSheetShow];
 }
 
 - (instancetype)init
@@ -141,22 +144,34 @@ static NSString * const kCellID = @"BAActionSheetCell";
     cell.selectionStyle = (self.title)?UITableViewCellSelectionStyleNone:UITableViewCellSelectionStyleDefault;
     if ( 0 == indexPath.section )
     {
-        if ( indexPath.row == self.specialIndex )
+        if (!self.contentColorArray || self.contentColorArray.count == 0 || self.contentColorArray.count < self.dataArray.count)
         {
-            cell.customTextLabel.textColor = [UIColor redColor];
+            NSMutableArray *mutArr = [NSMutableArray array];
+            for (NSInteger i = 0; i < self.dataArray.count; i ++)
+            {
+                [mutArr addObject:[UIColor blackColor]];
+            }
+            self.contentColorArray = [mutArr mutableCopy];
         }
-        
         if ( self.viewStyle == BAActionSheetStyleNormal )
         {
             cell.customTextLabel.text = self.dataArray[indexPath.row];
+            cell.customTextLabel.textColor = self.contentColorArray[indexPath.row];
         }
         else if ( self.viewStyle == BAActionSheetStyleTitle )
         {
+            if ([self.titleColor isKindOfClass:[UIColor class]] && indexPath.row == 0)
+            {
+                cell.customTextLabel.textColor = self.titleColor;
+            }
+            else
+            {
+                cell.customTextLabel.textColor = (indexPath.row == 0) ? [UIColor blackColor] : self.contentColorArray[indexPath.row-1];
+            }
             cell.customTextLabel.text = (indexPath.row ==0) ? self.title : self.dataArray[indexPath.row-1];
         }
         else
         {
-            
             NSInteger index = (self.title) ? indexPath.row - 1 : indexPath.row;
             if ( index >= 0 )
             {
@@ -164,7 +179,16 @@ static NSString * const kCellID = @"BAActionSheetCell";
             }
             
             cell.customTextLabel.text = (indexPath.row == 0) ? self.title : self.dataArray[indexPath.row-1];
+            if ([self.titleColor isKindOfClass:[UIColor class]] && indexPath.row == 0)
+            {
+                cell.customTextLabel.textColor = self.titleColor;
+            }
+            else
+            {
+                cell.customTextLabel.textColor = (indexPath.row == 0) ? [UIColor blackColor] : self.contentColorArray[indexPath.row-1];
+            }
         }
+        
     }
     else
     {
@@ -191,12 +215,12 @@ static NSString * const kCellID = @"BAActionSheetCell";
             NSLog(@"【 BAActionSheet 】标题不能点击！");
             return;
         }
-        self.callback(index);
+        self.actionBlock(index);
     }
     else if ( 1 == indexPath.section )
     {
         NSLog(@"【 BAActionSheet 】你点击了取消按钮！");
-        [self ba_dismissBAActionSheet];
+        [self ba_actionSheetHidden];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -213,7 +237,7 @@ static NSString * const kCellID = @"BAActionSheetCell";
     }
     if ([view isKindOfClass:[self class]])
     {
-        [self ba_dismissBAActionSheet];
+        [self ba_actionSheetHidden];
     }
 }
 
@@ -244,16 +268,16 @@ static NSString * const kCellID = @"BAActionSheetCell";
     self.tableView.frame = CGRectMake(min_x, min_y, min_w, min_h);
 }
 
-- (void)ba_showBAActionSheet
+- (void)ba_actionSheetShow
 {
     [self.actionSheetWindow addSubview:self];
     
     [self ba_layoutSubViews];
     
     /*! 设置默认样式为： */
-    if (self.isShowAnimate)
+    if (self.isShowAnimate && !self.animatingStyle)
     {
-        _animatingStyle = BAActionSheetAnimatingStyleScale;
+        _animatingStyle = BAAlertAnimatingStyleScale;
     }
     /*! 如果没有开启动画，就直接默认第一个动画样式 */
     else if (!self.isShowAnimate && self.animatingStyle)
@@ -262,20 +286,20 @@ static NSString * const kCellID = @"BAActionSheetCell";
     }
     else
     {
-        NSLog(@"您没有开启动画，也没有设置动画样式，默认为没有动画！");
+        if (!self.animatingStyle)
+        {
+            NSLog(@"您没有开启动画，也没有设置动画样式，默认为没有动画！");
+        }
     }
     
     if (self.isShowAnimate)
     {
         [self showAnimationWithView:self.tableView];
     }
-    else
-    {
-        
-    }
+    
 }
 
-- (void)ba_dismissBAActionSheet
+- (void)ba_actionSheetHidden
 {
     if (self.isShowAnimate)
     {
@@ -290,17 +314,17 @@ static NSString * const kCellID = @"BAActionSheetCell";
 #pragma mark - 进场动画
 - (void )showAnimationWithView:(UIView *)animationView
 {
-    if (self.animatingStyle == BAActionSheetAnimatingStyleScale)
+    if (self.animatingStyle == BAAlertAnimatingStyleScale)
     {
         [animationView scaleAnimationShowFinishAnimation:^{
         }];
     }
-    else if (self.animatingStyle == BAActionSheetAnimatingStyleShake)
+    else if (self.animatingStyle == BAAlertAnimatingStyleShake)
     {
         [animationView.layer shakeAnimationWithDuration:1.0 shakeRadius:16.0 repeat:1 finishAnimation:^{
         }];
     }
-    else if (self.animatingStyle == BAActionSheetAnimatingStyleFall)
+    else if (self.animatingStyle == BAAlertAnimatingStyleFall)
     {
         [animationView.layer fallAnimationWithDuration:0.35 finishAnimation:^{
         }];
@@ -311,31 +335,26 @@ static NSString * const kCellID = @"BAActionSheetCell";
 - (void )dismissAnimationView:(UIView *)animationView
 {
     BAKit_WeakSelf;
-    if (self.animatingStyle == BAActionSheetAnimatingStyleScale)
+    if (self.animatingStyle == BAAlertAnimatingStyleScale)
     {
         [animationView scaleAnimationDismissFinishAnimation:^{
             BAKit_StrongSelf
             [self performSelector:@selector(ba_removeSelf)];
         }];
     }
-    else if (self.animatingStyle == BAActionSheetAnimatingStyleShake)
+    else if (self.animatingStyle == BAAlertAnimatingStyleShake)
     {
         [animationView.layer floatAnimationWithDuration:0.35f finishAnimation:^{
             BAKit_StrongSelf
             [self performSelector:@selector(ba_removeSelf)];
         }];
     }
-    else if (self.animatingStyle == BAActionSheetAnimatingStyleFall)
+    else if (self.animatingStyle == BAAlertAnimatingStyleFall)
     {
         [animationView.layer floatAnimationWithDuration:0.35f finishAnimation:^{
             BAKit_StrongSelf
             [self performSelector:@selector(ba_removeSelf)];
         }];
-    }
-    else
-    {
-        NSLog(@"您没有选择出场动画样式：animatingStyle，默认为没有动画样式！");
-        [self performSelector:@selector(ba_removeSelf)];
     }
 }
 
@@ -401,7 +420,7 @@ static NSString * const kCellID = @"BAActionSheetCell";
     _showAnimate = showAnimate;
 }
 
-- (void)setAnimatingStyle:(BAActionSheetAnimatingStyle)animatingStyle
+- (void)setAnimatingStyle:(BAAlertAnimatingStyle)animatingStyle
 {
     _animatingStyle = animatingStyle;
 }
