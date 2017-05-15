@@ -9,14 +9,13 @@
 
 
 #import <UIKit/UIKit.h>
-
+#import "BAAlert_Config.h"
 
 @interface BAActionSheetCell : UITableViewCell
 
-/*! 自定义图片 */
-@property (weak, nonatomic) IBOutlet UIImageView  *customImageView;
-/*! 自定义title */
-@property (weak, nonatomic) IBOutlet UILabel      *customTextLabel;
+/*! BAActionSheet 类型，默认：1 */
+@property (nonatomic, assign) BAActionSheetType actionSheetType;
 
 
 @end
+

@@ -19,6 +19,13 @@
 ///*! 使用方法二：pod */
 //#import <BAAlert_OC.h>
 
+/*! VC 用 BAKit_ShowAlertWithMsg */
+#define BAKit_ShowAlertWithMsg_ios8(msg) UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:msg preferredStyle:UIAlertControllerStyleAlert];\
+UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确 定" style:UIAlertActionStyleDefault handler:nil];\
+[alert addAction:sureAction];\
+[self presentViewController:alert animated:YES completion:nil];
+
+
 static NSString * const title0 = @"温馨提示";
 static NSString * const titleMsg0 = @"欢迎使用 iPhone SE，迄今最高性能的 4 英寸 iPhone。在打造这款手机时，我们在深得人心的 4 英寸设计基础上，从里到外重新构想。它所采用的 A9 芯片，正是在 iPhone 6s 上使用的先进芯片。1200 万像素的摄像头能拍出令人叹为观止的精彩照片和 4K 视频，而 Live Photos 则会让你的照片栩栩如生。这一切，成就了一款外形小巧却异常强大的 iPhone。\n对于 MacBook，我们给自己设定了一个几乎不可能实现的目标：在有史以来最为轻盈纤薄的 Mac 笔记本电脑上，打造全尺寸的使用体验。这就要求每个元素都必须重新构想，不仅令其更为纤薄轻巧，还要更加出色。最终我们带来的，不仅是一部新款的笔记本电脑，更是一种对笔记本电脑的前瞻性思考。现在，有了第六代 Intel 处理器、提升的图形处理性能、高速闪存和最长可达 10 小时的电池使用时间*，MacBook 的强大更进一步。\n欢迎使用 iPhone SE，迄今最高性能的 4 英寸 iPhone。在打造这款手机时，我们在深得人心的 4 英寸设计基础上，从里到外重新构想。它所采用的 A9 芯片，正是在 iPhone 6s 上使用的先进芯片。1200 万像素的摄像头能拍出令人叹为观止的精彩照片和 4K 视频，而 Live Photos 则会让你的照片栩栩如生。这一切，成就了一款外形小巧却异常强大的 iPhone。\n对于 MacBook，我们给自己设定了一个几乎不可能实现的目标：在有史以来最为轻盈纤薄的 Mac 笔记本电脑上，打造全尺寸的使用体验。这就要求每个元素都必须重新构想，不仅令其更为纤薄轻巧，还要更加出色。最终我们带来的，不仅是一部新款的笔记本电脑，更是一种对笔记本电脑的前瞻性思考。现在，有了第六代 Intel 处理器、提升的图形处理性能、高速闪存和最长可达 10 小时的电池使用时间*，MacBook 的强大更进一步。";
 
@@ -35,9 +42,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 @property (nonatomic, strong) BAAlert        *alertView4;
 @property (nonatomic, strong) BAAlert        *alertView5;
 
-@property (nonatomic, strong) BAActionSheet  *actionSheet1;
-@property (nonatomic, strong) BAActionSheet  *actionSheet2;
-@property (nonatomic, strong) BAActionSheet  *actionSheet3;
+@property (nonatomic, strong) BAActionSheet  *actionSheet;
 
 @property(nonatomic, strong) CustomView *customView;
 
@@ -89,7 +94,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BAKit_WeakSelf
     if ( 0 == indexPath.section )
     {
         [self showAlertAction:indexPath.row + 1];
@@ -98,41 +102,17 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         switch ( indexPath.row ) {
             case 0:
             {
-                [BAActionSheet ba_actionSheetShowWithTitle:nil style:BAActionSheetStyleNormal contentArray:@[@"测试1",@"测试2",@"测试3"] imageArray:nil titleColor:nil contentColorArray:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor]] configuration:^(BAActionSheet *tempView) {
-                    BAKit_StrongSelf
-                    tempView.isTouchEdgeHide = YES;
-                    tempView.animatingStyle = BAAlertAnimatingStyleScale;
-                    self.actionSheet1 = tempView;
-                } actionBlock:^(NSInteger index) {
-                    NSLog(@"你点击了第 %ld 行！",(long)index);
-                }];
+                [self actionSheet1];
             }
                 break;
             case 1:
             {
-                [BAActionSheet ba_actionSheetShowWithTitle:@"测试带标题的 ActionSheet" style:BAActionSheetStyleTitle contentArray:@[@"测试1",@"测试2",@"测试3"] imageArray:nil titleColor:[UIColor greenColor] contentColorArray:@[[UIColor redColor], [UIColor greenColor], [UIColor grayColor], [UIColor purpleColor]] configuration:^(BAActionSheet *tempView) {
-                    BAKit_StrongSelf
-                    tempView.isTouchEdgeHide = YES;
-                    self.actionSheet1 = tempView;
-                } actionBlock:^(NSInteger index) {
-                    BAKit_StrongSelf
-                    NSLog(@"你点击了第 %ld 行！",(long)index);
-                    [self.actionSheet1 ba_actionSheetHidden];
-                }];
+                [self actionSheet2];
             }
                 break;
             case 2:
             {
-                [BAActionSheet ba_actionSheetShowWithTitle:@"测试带标题的 ActionSheet" style:BAActionSheetStyleImageAndTitle contentArray:@[@"测试1",@"测试2",@"测试3"] imageArray:@[[UIImage imageNamed:@"123.png"],[UIImage imageNamed:@"背景.jpg"],[UIImage imageNamed:@"美女.jpg"]] titleColor:nil contentColorArray:@[[UIColor redColor], [UIColor greenColor]] configuration:^(BAActionSheet *tempView) {
-                    BAKit_StrongSelf
-                    tempView.isTouchEdgeHide = YES;
-                    tempView.animatingStyle = BAAlertAnimatingStyleScale;
-                    self.actionSheet1 = tempView;
-                } actionBlock:^(NSInteger index) {
-                    BAKit_StrongSelf
-                    NSLog(@"你点击了第 %ld 行！",(long)index);
-                    [self.actionSheet1 ba_actionSheetHidden];
-                }];
+                [self actionSheet3];
             }
                 break;
             default:
@@ -176,12 +156,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     return FLT_MIN;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - 点击事件
 - (void)showAlertAction:(NSInteger)index
 {
@@ -207,6 +181,116 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     }
 }
 
+- (void)actionSheet1
+{
+    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *contentArray = @[@"微信支付", @"支付宝", @"预付款账户"];
+    NSArray *subContentArray = @[@"", @"18588888888", @"余额：￥480.00"];
+    NSArray *imageArray = @[@"123.png", @"背景.jpg", @"美女.jpg"];
+    
+    for (NSInteger i = 0; i < contentArray.count; i++)
+    {
+        BAActionSheetModel *model = [BAActionSheetModel new];
+        model.imageUrl = imageArray[i];
+        model.content = contentArray[i];
+        model.subContent = subContentArray[i];
+        
+        [dataArray addObject:model];
+    }
+    BAKit_WeakSelf
+    [BAActionSheet ba_actionSheetShowWithConfiguration:^(BAActionSheet *tempView) {
+        
+        BAKit_StrongSelf
+        tempView.title = @"支付方式";
+        tempView.dataArray = dataArray;
+        tempView.isTouchEdgeHide = NO;
+        
+        self.actionSheet = tempView;
+    } actionBlock:^(NSIndexPath *indexPath, BAActionSheetModel *model) {
+        BAKit_ShowAlertWithMsg_ios8(model.content);
+    }];
+}
+
+- (void)actionSheet2
+{
+    NSMutableArray *dataArray = [NSMutableArray array];
+    NSArray *contentArray = @[@"微信支付", @"支付宝", @"预付款账户"];
+
+    for (NSInteger i = 0; i < contentArray.count; i++)
+    {
+        BAActionSheetModel *model = [BAActionSheetModel new];
+//        model.imageUrl = imageArray[i];
+        model.content = contentArray[i];
+//        model.subContent = subContentArray[i];
+        
+        [dataArray addObject:model];
+    }
+    BAKit_WeakSelf
+    [BAActionSheet ba_actionSheetShowWithConfiguration:^(BAActionSheet *tempView) {
+        
+        BAKit_StrongSelf
+//        tempView.title = @"支付方式";
+        tempView.dataArray = dataArray;
+        tempView.actionSheetType = BAActionSheetTypeCustom;
+        //        tempView.isTouchEdgeHide = NO;
+        
+        self.actionSheet = tempView;
+    } actionBlock:^(NSIndexPath *indexPath, BAActionSheetModel *model) {
+        BAKit_ShowAlertWithMsg_ios8(model.content);
+    }];
+}
+
+- (void)actionSheet3
+{
+    NSArray *contentArray = @[@"微信支付", @"支付宝", @"预付款账户", @"中行"];
+    NSArray <NSArray *>*subContentArray = @[
+                                            @[@"微信支付1", @"微信支付2", @"微信支付3"],
+                                            @[@"支付宝1", @"支付宝2", @"支付宝3", @"支付宝4"],
+                                            @[],
+                                            @[@"中行1", @"中行2", @"中行3", @"中行4", @"中行5", @"中行6", @"中行7", @"中行2", @"中行3", @"中行4", @"中行5", @"中行6", @"中行7", @"中行2", @"中行3", @"中行4", @"中行5", @"中行6", @"中行7", @"中行2", @"中行3", @"中行4", @"中行5", @"中行6", @"中行7"]
+                                            ];
+    
+    NSMutableArray *dataArray = @[].mutableCopy;
+    for (NSInteger i = 0; i < contentArray.count; i++)
+    {
+        BAActionSheetModel *model = [BAActionSheetModel new];
+        model.content = contentArray[i];
+        
+        NSMutableArray *mutArray = @[].mutableCopy;
+        for (NSInteger j = 0; j < subContentArray[i].count; j ++)
+        {
+            BAActionSheetSubContentModel *subContentModel = [BAActionSheetSubContentModel new];
+            subContentModel.subContent = subContentArray[i][j];
+            [mutArray addObject:subContentModel];
+        }
+        model.subContentArray = mutArray;
+        
+        [dataArray addObject:model];
+    }
+    
+    BAKit_WeakSelf
+    [BAActionSheet ba_actionSheetShowWithConfiguration:^(BAActionSheet *tempView) {
+        
+        BAKit_StrongSelf
+        tempView.title = @"支付方式";
+        tempView.dataArray = dataArray;
+        tempView.actionSheetType = BAActionSheetTypeExpand;
+        //        tempView.isTouchEdgeHide = NO;
+        
+        self.actionSheet = tempView;
+    } actionBlock:^(NSIndexPath *indexPath, BAActionSheetModel *model) {
+        if (model.subContentArray.count > 0)
+        {
+            BAKit_ShowAlertWithMsg_ios8(model.subContentArray[indexPath.row].subContent);
+        }
+        else
+        {
+            BAKit_ShowAlertWithMsg_ios8(model.content);
+        }
+    }];
+}
+
+
 - (void)alert1
 {
     BAKit_WeakSelf
@@ -222,7 +306,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         //        temp.isShowAnimate   = YES;
         //        /*! 进出场动画样式 默认为：1 */
         //        temp.animatingStyle  = 1;
-        
         self.alertView1 = tempView;
     } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
@@ -234,9 +317,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
             vc2.title = @"alert1";
             [self.navigationController pushViewController:vc2 animated:YES];
         }
-
     }];
-
 }
 
 - (void)alert2
@@ -295,8 +376,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
-            /*! 隐藏alert */
-            //            [weakSelf.alertView3 ba_dismissAlertView];
         }
         else if (index == 1)
         {
@@ -304,8 +383,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
             ViewController2 *vc2 = [ViewController2 new];
             vc2.title = @"alert3";
             [self.navigationController pushViewController:vc2 animated:YES];
-            /*! 隐藏alert */
-            //            [weakSelf.alertView3 ba_dismissAlertView];
         }
     }];
 }
@@ -319,9 +396,9 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         /*! 自定义按钮文字颜色 */
         //    tempView.buttonTitleColor = [UIColor orangeColor];
         /*! 自定义alert的背景图片 */
-        tempView.bgImageName      = @"背景.jpg";
+        tempView.bgImageName = @"背景.jpg";
         /*! 是否显示动画效果 */
-        tempView.showAnimate    = YES;
+        tempView.showAnimate = YES;
         self.alertView4 = tempView;
     } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
@@ -329,7 +406,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         if (index == 0)
         {
             NSLog(@"点击了取消按钮！");
-            
         }
         else if (index == 1)
         {
@@ -375,7 +451,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     
 }
 
-
 #pragma mark - setter / getter
 
 - (UITableView *)tableView
@@ -402,9 +477,9 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
                                                  @"4、内置图片和文字，可滑动查看",
                                                  @"5、完全自定义alert"
                                                  ],
-                      @[@"1、actionsheet",
-                        @"2、actionsheet带标题",
-                        @"3、actionsheet带标题带图片"],
+                      @[@"1、actionsheet 默认样式：title、subTitle、image",
+                        @"2、actionsheet custom样式，类似于微博的 actionsheet",
+                        @"3、actionsheet 展开选择样式，可以展开收回"],
                       @[@"BAAlert特点：\n1、手势触摸隐藏开关，可随时开关\n2、可以自定义背景图片、背景颜色、按钮颜色\n3、可以添加文字和图片，且可以滑动查看！\n4、横竖屏适配完美\n5、有各种炫酷动画展示你的alert\n6、可以自定义按钮颜色\n7、理论完全兼容现有所有 iOS 系统版本"
                         ], nil];
     }

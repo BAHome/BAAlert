@@ -22,60 +22,69 @@ static NSString * const kCellID = @"BAActionSheetCell";
 /*! tableView */
 @property (strong, nonatomic) UITableView  *tableView;
 
-/*! 数据源 */
-@property (strong, nonatomic) NSArray      *dataArray;
-/*! 图片数组 */
-@property (strong, nonatomic) NSArray      *imageArray;
-/*! 字体颜色数组 */
-@property (strong, nonatomic) NSArray      *contentColorArray;
-/*! 标题 */
-@property (copy, nonatomic  ) NSString     *title;
-@property (strong, nonatomic) UIColor      *titleColor;
-
 /*! 点击事件回调 */
-@property (nonatomic, copy) BAAlert_ButtonActionBlock actionBlock;
-/*! 自定义样式 */
-@property (assign, nonatomic) BAActionSheetStyle viewStyle;
+@property (nonatomic, copy) BAActionSheet_ActionBlock actionBlock;
 
 @property (nonatomic, strong) UIWindow *actionSheetWindow;
-
+@property (nonatomic, strong) UIView *headerView;
+@property(nonatomic, strong) NSIndexPath *indexPath;
+@property(nonatomic, assign) BOOL isExpand;
 
 @end
 
 @implementation BAActionSheet
 
+///*!
+// *
+// *  @param title             标题内容(可空)
+// *  @param style             样式
+// *  @param contentArray      选项数组(NSString数组)
+// *  @param imageArray        图片数组(UIImage数组)
+// *  @param contentColorArray 内容颜色数组
+// *  @param titleColor    titleColor
+// *  @param configuration 属性配置：如 bgColor、buttonTitleColor、isTouchEdgeHide...
+// *  @param actionBlock  block回调点击的选项
+// */
+//+ (void)ba_actionSheetShowWithTitle:(NSString *)title
+//                              style:(BAActionSheetStyle)style
+//                       contentArray:(NSArray <NSString *> *)contentArray
+//                         imageArray:(NSArray <UIImage *> *)imageArray
+//                         titleColor:(UIColor *)titleColor
+//                  contentColorArray:(NSArray <UIColor *> *)contentColorArray
+//                      configuration:(BAActionSheet_ConfigBlock)configuration
+//                        actionBlock:(BAAlert_ButtonActionBlock)actionBlock
+//{
+//    BAActionSheet *actionSheet       = [[self alloc] init];
+//    actionSheet.dataArray            = contentArray;
+//    actionSheet.actionBlock          = actionBlock;
+//    actionSheet.viewStyle            = style;
+//    actionSheet.imageArray           = imageArray;
+//    actionSheet.contentColorArray    = contentColorArray;
+//    actionSheet.title                = title;
+//    actionSheet.titleColor = titleColor;
+//    if (configuration)
+//    {
+//        configuration(actionSheet);
+//    }
+//    [actionSheet ba_actionSheetShow];
+//}
+
+
 /*!
  *
- *  @param title             标题内容(可空)
- *  @param style             样式
- *  @param contentArray      选项数组(NSString数组)
- *  @param imageArray        图片数组(UIImage数组)
- *  @param contentColorArray 内容颜色数组
- *  @param titleColor    titleColor
  *  @param configuration 属性配置：如 bgColor、buttonTitleColor、isTouchEdgeHide...
- *  @param actionBlock  block回调点击的选项
+ *  @param actionBlock   block回调点击的选项
  */
-+ (void)ba_actionSheetShowWithTitle:(NSString *)title
-                              style:(BAActionSheetStyle)style
-                       contentArray:(NSArray <NSString *> *)contentArray
-                         imageArray:(NSArray <UIImage *> *)imageArray
-                         titleColor:(UIColor *)titleColor
-                  contentColorArray:(NSArray <UIColor *> *)contentColorArray
-                      configuration:(BAActionSheet_ConfigBlock)configuration
-                        actionBlock:(BAAlert_ButtonActionBlock)actionBlock
++ (void)ba_actionSheetShowWithConfiguration:(BAActionSheet_ConfigBlock)configuration
+                                actionBlock:(BAActionSheet_ActionBlock)actionBlock
 {
-    BAActionSheet *actionSheet       = [[self alloc] init];
-    actionSheet.dataArray            = contentArray;
-    actionSheet.actionBlock          = actionBlock;
-    actionSheet.viewStyle            = style;
-    actionSheet.imageArray           = imageArray;
-    actionSheet.contentColorArray    = contentColorArray;
-    actionSheet.title                = title;
-    actionSheet.titleColor = titleColor;
+    BAActionSheet *actionSheet = [[self alloc] init];
+    
     if (configuration)
     {
         configuration(actionSheet);
     }
+    actionSheet.actionBlock = actionBlock;
     [actionSheet ba_actionSheetShow];
 }
 
@@ -99,130 +108,264 @@ static NSString * const kCellID = @"BAActionSheetCell";
 
 - (void)setupCommonUI
 {
-    self.backgroundColor = BAKit_COLOR_Translucent;
+    self.backgroundColor = BAAlert_Color_Translucent;
+    self.actionSheetType = BAActionSheetTypeNormal;
+    self.isExpand = NO;
+    self.isTouchEdgeHide = YES;
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDeviceOrientationRotateAction:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    if (self.actionSheetType == BAActionSheetTypeCustom)
+    {
+        return 2;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        return 1;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeExpand)
+    {
+        return self.dataArray.count;
+    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ( 0 == section )
+    if (self.actionSheetType == BAActionSheetTypeCustom)
     {
-        if ( self.viewStyle == BAActionSheetStyleNormal || self.viewStyle == BAActionSheetStyleImage )
+        return (section == 0) ? self.dataArray.count : 1;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        return self.dataArray.count;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeExpand)
+    {
+        if (self.isExpand)
         {
-            return self.dataArray.count;
+            if (section == self.indexPath.section)
+            {
+                BAActionSheetModel *model = self.dataArray[section];
+                
+                return model.subContentArray.count;
+            }
         }
         else
         {
-            return self.dataArray.count + 1;
+            return 0;
         }
     }
-    else
-    {
-        return 1;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return (section == 0)?8.f:0.1f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.1f;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BAActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
-    cell.selectionStyle = (self.title)?UITableViewCellSelectionStyleNone:UITableViewCellSelectionStyleDefault;
-    if ( 0 == indexPath.section )
+    
+    BAActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID];
+    
+    if (!cell)
     {
-        if (!self.contentColorArray || self.contentColorArray.count == 0 || self.contentColorArray.count < self.dataArray.count)
+        cell = [[BAActionSheetCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellID];
+    }
+    cell.actionSheetType = self.actionSheetType;
+    
+    if (self.actionSheetType == BAActionSheetTypeCustom)
+    {
+        if (indexPath.section == 0)
         {
-            NSMutableArray *mutArr = [NSMutableArray array];
-            for (NSInteger i = 0; i < self.dataArray.count; i ++)
-            {
-                [mutArr addObject:[UIColor blackColor]];
-            }
-            self.contentColorArray = [mutArr mutableCopy];
+            BAActionSheetModel *model = self.dataArray[indexPath.row];
+            cell.textLabel.text = model.content;
         }
-        if ( self.viewStyle == BAActionSheetStyleNormal )
+        else if (indexPath.section == 1)
         {
-            cell.customTextLabel.text = self.dataArray[indexPath.row];
-            cell.customTextLabel.textColor = self.contentColorArray[indexPath.row];
+            cell.textLabel.text = @"取 消";
         }
-        else if ( self.viewStyle == BAActionSheetStyleTitle )
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        BAActionSheetModel *model = self.dataArray[indexPath.row];
+        cell.textLabel.text = model.content;
+        cell.detailTextLabel.text = model.subContent;
+        cell.imageView.image = [UIImage imageNamed:model.imageUrl];
+        cell.detailTextLabel.textColor = BAAlert_Color_gray7;
+        
+        if (indexPath.row == 0)
         {
-            if ([self.titleColor isKindOfClass:[UIColor class]] && indexPath.row == 0)
-            {
-                cell.customTextLabel.textColor = self.titleColor;
-            }
-            else
-            {
-                cell.customTextLabel.textColor = (indexPath.row == 0) ? [UIColor blackColor] : self.contentColorArray[indexPath.row-1];
-            }
-            cell.customTextLabel.text = (indexPath.row ==0) ? self.title : self.dataArray[indexPath.row-1];
+            self.indexPath = indexPath;
+        }
+        
+        if (self.indexPath == indexPath)
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         else
         {
-            NSInteger index = (self.title) ? indexPath.row - 1 : indexPath.row;
-            if ( index >= 0 )
-            {
-                cell.customImageView.image = self.imageArray[index];
-            }
-            
-            cell.customTextLabel.text = (indexPath.row == 0) ? self.title : self.dataArray[indexPath.row-1];
-            if ([self.titleColor isKindOfClass:[UIColor class]] && indexPath.row == 0)
-            {
-                cell.customTextLabel.textColor = self.titleColor;
-            }
-            else
-            {
-                cell.customTextLabel.textColor = (indexPath.row == 0) ? [UIColor blackColor] : self.contentColorArray[indexPath.row-1];
-            }
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
     }
-    else
+    else if (self.actionSheetType == BAActionSheetTypeExpand)
     {
-        cell.customTextLabel.text = @"取 消";
+        if (self.isExpand)
+        {
+            BAActionSheetModel *model = self.dataArray[indexPath.section];
+            if (model.subContentArray.count)
+            {
+                BAActionSheetSubContentModel *subContentModel = model.subContentArray[indexPath.row];
+                cell.textLabel.text = subContentModel.subContent;
+                cell.textLabel.textColor = BAAlert_Color_gray7;
+                
+                cell.backgroundColor = BAAlert_Color_gray11;
+                
+                return cell;
+            }
+            if (indexPath.row == model.subContentArray.count-1)
+            {
+                self.isExpand = NO;
+            }
+        }
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ( 0 == indexPath.section )
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.actionSheetType == BAActionSheetTypeCustom)
     {
-        NSInteger index = 0;
-        if ( self.viewStyle == BAActionSheetStyleNormal || self.viewStyle == BAActionSheetStyleImage )
+        if (indexPath.section == 0)
         {
-            index = indexPath.row;
+            if (self.actionBlock)
+            {
+                [self ba_actionSheetHidden];
+                BAActionSheetModel *model = self.dataArray[indexPath.row];
+                
+                self.actionBlock(indexPath, model);
+            }
+        }
+        else if (indexPath.section == 1)
+        {
+            [self ba_actionSheetHidden];
+        }
+    }
+    else if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        // 之前选中的，取消选择
+        UITableViewCell *celled = [tableView cellForRowAtIndexPath:self.indexPath];
+        celled.accessoryType = UITableViewCellAccessoryNone;
+        // 记录当前选中的位置索引
+        self.indexPath = indexPath;
+        // 当前选择的打勾
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        
+        if (self.actionBlock)
+        {
+            [self ba_actionSheetHidden];
+            BAActionSheetModel *model = self.dataArray[indexPath.row];
+            self.actionBlock(self.indexPath, model);
+        }
+    }
+    else if (self.actionSheetType == BAActionSheetTypeExpand)
+    {
+        if (self.actionBlock)
+        {
+            [self ba_actionSheetHidden];
+            BAActionSheetModel *model = self.dataArray[indexPath.section];
+            
+            self.actionBlock(indexPath, model);
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [self.tableView reloadData];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.actionSheetType == BAActionSheetTypeCustom)
+    {
+        return (section == 0) ? FLT_MIN : 10;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        return FLT_MIN;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeExpand)
+    {
+        return 44;
+    }
+    else
+    {
+        return FLT_MIN;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return FLT_MIN;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.actionSheetType == BAActionSheetTypeExpand)
+    {
+        BAActionSheetModel *model = self.dataArray[section];
+        
+        UIButton *header = [UIButton new];
+        header.backgroundColor = [UIColor whiteColor];
+        header.userInteractionEnabled = YES;
+        [header addTarget:self action:@selector(handleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        header.tag = section;
+        
+        NSString *imageName = @"";
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlert" withExtension:@"bundle"];
+        if (url)
+        {
+            imageName = @"BAAlert.bundle/arow_down";
         }
         else
         {
-            index = indexPath.row - 1;
+            imageName = @"arow_down";
         }
-        if (-1 == index)
+        UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [expandButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        expandButton.frame = CGRectMake(SCREENWIDTH - 50, 0, 30, 30);
+        expandButton.userInteractionEnabled = NO;
+        
+        UILabel *titleLabel = [UILabel new];
+        titleLabel.frame = CGRectMake(15, 0, SCREENWIDTH - 15 * 2, 43);
+        titleLabel.text = model.content;
+        
+        [header addSubview:titleLabel];
+        if (model.subContentArray.count > 0)
         {
-            NSLog(@"【 BAActionSheet 】标题不能点击！");
-            return;
+            [header addSubview:expandButton];
         }
-        self.actionBlock(index);
+        
+        return header;
     }
-    else if ( 1 == indexPath.section )
-    {
-        NSLog(@"【 BAActionSheet 】你点击了取消按钮！");
-        [self ba_actionSheetHidden];
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    return [UIView new];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -253,19 +396,57 @@ static NSString * const kCellID = @"BAActionSheetCell";
 
 - (void)ba_layoutSubViews
 {
-    self.frame = self.window.bounds;
-    self.actionSheetWindow.frame = self.window.bounds;
-    
     CGFloat min_x = 0;
     CGFloat min_y = 0;
     CGFloat min_w = 0;
     CGFloat min_h = 0;
+    CGFloat header_h = 0;
     
-    min_x = 0;
-    min_h = MIN(SCREENHEIGHT - 64.f, self.tableView.contentSize.height);
-    min_y = SCREENHEIGHT - min_h;
+    self.frame = [UIScreen mainScreen].bounds;
+    
     min_w = SCREENWIDTH;
-    self.tableView.frame = CGRectMake(min_x, min_y, min_w, min_h);
+    min_h = (self.title.length > 0) ? 44 : 0;
+    self.headerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
+    
+    
+    header_h = CGRectGetHeight(self.headerView.frame);
+    if (self.actionSheetType == BAActionSheetTypeCustom)
+    {
+        min_h = (self.dataArray.count + 1) * 44 + 10;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        min_h = (self.dataArray.count) * 44;
+    }
+    else if (self.actionSheetType == BAActionSheetTypeExpand)
+    {
+        if (self.isExpand)
+        {
+            BAActionSheetModel *model = self.dataArray[self.indexPath.section];
+            min_h = (self.dataArray.count + model.subContentArray.count) * 44;
+        }
+        else
+        {
+            min_h = (self.dataArray.count) * 44;
+        }
+    }
+    min_y = SCREENHEIGHT - min_h;
+    min_y -= header_h;
+    min_y = MAX(min_y, 0);
+    min_h += header_h;
+    min_h = MIN(min_h, SCREENHEIGHT);
+    if (min_h == SCREENHEIGHT)
+    {
+        _tableView.scrollEnabled = YES;
+    }
+    self.tableView.frame = CGRectMake(min_x, min_y, min_w, min_h);;
+    
+    if (self.title.length > 0)
+    {
+        self.tableView.tableHeaderView = self.headerView;
+    }
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.tableView reloadData];
 }
 
 - (void)ba_actionSheetShow
@@ -296,7 +477,6 @@ static NSString * const kCellID = @"BAActionSheetCell";
     {
         [self showAnimationWithView:self.tableView];
     }
-    
 }
 
 - (void)ba_actionSheetHidden
@@ -366,30 +546,65 @@ static NSString * const kCellID = @"BAActionSheetCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - lazy
+- (void)handleButtonAction:(UIButton *)sender
+{
+    BAActionSheetModel *model = self.dataArray[sender.tag];
+    for (NSInteger i = 0; i < model.subContentArray.count; i++)
+    {
+        self.indexPath = [NSIndexPath indexPathForRow:i inSection:sender.tag];
+    }
+    
+    if (model.subContentArray.count > 0)
+    {
+        self.isExpand = !self.isExpand;
+    }
+    else
+    {
+        self.isExpand = NO;
+        if (self.actionBlock)
+        {
+            [self ba_actionSheetHidden];
+            BAActionSheetModel *model = self.dataArray[sender.tag];
+            
+            self.actionBlock(self.indexPath, model);
+        }
+    }
+    
+    [self ba_layoutSubViews];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - setter / getter
 - (UITableView *)tableView
 {
     if ( !_tableView )
     {
-        _tableView                 = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView                 = [[UITableView alloc] init];
         _tableView.delegate        = self;
         _tableView.dataSource      = self;
         _tableView.scrollEnabled   = NO;
-        _tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
-        _tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.f];
-        [self addSubview:_tableView];
+        _tableView.backgroundColor = BAAlert_Color_gray11;
         
-        NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlertBundle" withExtension:@"bundle"];
-        if (url)
-        {
-            [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:[NSBundle bundleWithURL:url]] forCellReuseIdentifier:kCellID];
-        }
-        else
-        {
-            [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BAActionSheetCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
-        }
+        [self addSubview:_tableView];
     }
     return _tableView;
+}
+
+- (UIView *)headerView
+{
+    if (!_headerView)
+    {
+        _headerView = [UIView new];
+        
+        UILabel *titleLabel = [UILabel new];
+        titleLabel.frame = CGRectMake(50, 0, SCREENWIDTH - 50 * 2, 44);
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.text = self.title;
+        
+        [self.headerView addSubview:titleLabel];
+    }
+    return _headerView;
 }
 
 - (UIWindow *)actionSheetWindow
@@ -403,7 +618,7 @@ static NSString * const kCellID = @"BAActionSheetCell";
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"windowLevel == %ld AND hidden == 0 " , UIWindowLevelNormal];
             self.actionSheetWindow = [[UIApplication sharedApplication].windows filteredArrayUsingPredicate:predicate].firstObject;
         }
-        self.actionSheetWindow.backgroundColor = BAKit_COLOR_Translucent;
+        self.actionSheetWindow.backgroundColor = BAAlert_Color_Translucent;
     }
 
     return _actionSheetWindow;
@@ -423,5 +638,18 @@ static NSString * const kCellID = @"BAActionSheetCell";
 {
     _animatingStyle = animatingStyle;
 }
+
+- (void)setActionSheetType:(BAActionSheetType)actionSheetType
+{
+    _actionSheetType = actionSheetType;
+}
+
+@end
+
+@implementation BAActionSheetModel
+
+@end
+
+@implementation BAActionSheetSubContentModel
 
 @end

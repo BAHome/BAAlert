@@ -124,9 +124,7 @@
 - (void)dealloc
 {
     [self removeFromSuperview];
-    
 }
-
 
 #pragma mark - setter / getter
 

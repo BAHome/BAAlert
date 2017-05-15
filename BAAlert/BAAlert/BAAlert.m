@@ -373,7 +373,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 
 - (void)setupCommonUI
 {
-    self.bgColor = BAKit_COLOR_Translucent;
+    self.bgColor = BAAlert_Color_Translucent;
     self.blurImageView.hidden = NO;
     
     if (self.alertType == BAAlertTypeCustom)
@@ -465,7 +465,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     {
         [button setBackgroundImage:[self imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     }
-    [button setBackgroundImage:[self imageWithColor:BAKit_COLOR(135, 140, 145, 0.45)] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self imageWithColor:BAAlert_Color_RGBA(135, 140, 145, 0.45)] forState:UIControlStateHighlighted];
 
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.containerView addSubview:button];
@@ -476,7 +476,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 - (void)addLine:(CGRect)frame toView:(UIView *)view
 {
     UIView *line = [[UIView alloc] initWithFrame:frame];
-    line.backgroundColor = BAKit_COLOR(160, 170, 160, 0.5);
+    line.backgroundColor = BAAlert_Color_RGBA(160, 170, 160, 0.5);
     [view addSubview:line];
     [_lineArray addObject:line];
 }
@@ -908,7 +908,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"windowLevel == %ld AND hidden == 0 " , UIWindowLevelNormal];
             self.alertWindow = [[UIApplication sharedApplication].windows filteredArrayUsingPredicate:predicate].firstObject;
         }
-        self.alertWindow.backgroundColor = BAKit_COLOR_Translucent;
+        self.alertWindow.backgroundColor = BAAlert_Color_Translucent;
     }
     return _alertWindow;
 }

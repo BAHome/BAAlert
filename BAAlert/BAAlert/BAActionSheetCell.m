@@ -11,20 +11,52 @@
 
 @implementation BAActionSheetCell
 
-- (void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGFloat min_x = 0;
+    CGFloat min_y = 0;
+    CGFloat min_w = 0;
+    CGFloat min_h = 0;
     
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-    
-    CGContextFillRect(context, rect);
-    
-    //下分割线
-    
-    CGContextSetStrokeColorWithColor(context,[UIColor colorWithWhite:0.8 alpha:1].CGColor);
-    
-    CGContextStrokeRect(context,CGRectMake(0, rect.size.height, rect.size.width, 0.5f));
+    if (self.actionSheetType == BAActionSheetTypeNormal)
+    {
+        min_x = 15;
+        min_w = 30;
+        min_y = 7;
+        min_h = min_w;
+        self.imageView.frame = CGRectMake(min_x, min_y, min_w, min_h);
+        
+        min_w = CGRectGetWidth(self.frame) - CGRectGetMaxX(self.imageView.frame) - 15 * 2;
+        if (self.imageView.image.size.width > 0)
+        {
+            min_x = CGRectGetMaxX(self.imageView.frame) + 10;
+        }
+        min_y = 0;
+        min_h = CGRectGetHeight(self.frame);
+        if (self.detailTextLabel.text.length > 0)
+        {
+            min_y = 5;
+            min_h = CGRectGetHeight(self.frame)/2 - 5;
+        }
+        self.textLabel.frame = CGRectMake(min_x, min_y, min_w, min_h);
+        min_y = CGRectGetMaxY(self.textLabel.frame);
+        self.detailTextLabel.frame = CGRectMake(min_x, min_y, min_w, min_h);
+    }
+    else if (self.actionSheetType == BAActionSheetTypeCustom)
+    {
+        min_x = 15;
+        min_w = CGRectGetWidth(self.frame) - 15 * 2;
+        min_y = 0;
+        min_h = CGRectGetHeight(self.frame);
+        self.textLabel.frame = CGRectMake(min_x, min_y, min_w, min_h);
+    }
+}
+
+- (void)setActionSheetType:(BAActionSheetType)actionSheetType
+{
+    _actionSheetType = actionSheetType;
 }
 
 @end
+
