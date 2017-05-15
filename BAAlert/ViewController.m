@@ -346,7 +346,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     /*! 5、完全自定义alert */
     
     
-    self.customView = [CustomView new];
+    _customView = [CustomView new];
     self.customView.frame = CGRectMake(50, SCREENHEIGHT - 300, SCREENWIDTH - 50 * 2, 162);
 
     BAKit_WeakSelf
@@ -376,6 +376,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     self.tableView.frame = self.view.bounds;
     
 }
+
 
 #pragma mark - setter / getter
 

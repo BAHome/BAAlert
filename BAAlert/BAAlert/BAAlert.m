@@ -330,8 +330,8 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     {
         configuration(tempView);
     }
-    [tempView ba_alertShow];
     tempView.actionBlock = actionBlock;
+    [tempView ba_alertShow];
 }
 
 #pragma mark - ***** 初始化自定义View
@@ -343,7 +343,8 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
         self.alertType = BAAlertTypeCustom;
         self.customView_frame = customView.frame;
         
-        [self addSubview:self.customView];
+        [self addSubview:customView];
+        [self bringSubviewToFront:customView];
         [self setupCommonUI];
     }
     return self;
@@ -377,7 +378,6 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     
     if (self.alertType == BAAlertTypeCustom)
     {
-        NSLog(@"【 BAAlert 】注意：【自定义 alert 只适用于竖屏状态！】");
         [self interfaceOrientation:UIInterfaceOrientationPortrait];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardHiddenAction:) name:UIKeyboardWillHideNotification object:nil];
@@ -560,6 +560,8 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 - (void)ba_alertShow
 {
     [self.alertWindow addSubview:self];
+    [self.alertWindow bringSubviewToFront:self];
+    
     [self ba_layoutSubViews];
 
     /*! 设置默认样式为： */
@@ -667,46 +669,39 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 #pragma mark - 清除所有视图
 - (void)ba_removeSelf
 {
-    NSLog(@"【 %@ 】已经释放！",[self class]);
+//    NSLog(@"【 %@ 】已经释放！",[self class]);
     if (_titleLabel)
     {
-        [_titleLabel removeFromSuperview];
         _titleLabel = nil;
     }
     if (_imageView)
     {
-        [_imageView removeFromSuperview];
         _imageView = nil;
     }
     if (_messageLabel)
     {
-        [_messageLabel removeFromSuperview];
         _messageLabel = nil;
     }
     
     [self ba_resetButtons];
     
-    if (self.customView)
+    if (_customView)
     {
-        [self.customView removeFromSuperview];
-        self.customView = nil;
+        _customView = nil;
     }
-    if (self.containerView)
+    if (_containerView)
     {
-        [self.containerView removeFromSuperview];
-        self.containerView = nil;
+        _containerView = nil;
     }
-    if (self.blurImageView)
+    if (_blurImageView)
     {
-        [self.blurImageView removeFromSuperview];
-        self.blurImageView = nil;
+        _blurImageView = nil;
     }
-    if (self.scrollView)
+    if (_scrollView)
     {
-        [self.scrollView removeFromSuperview];
-        self.scrollView = nil;
+        _scrollView = nil;
     }
-    self.alertWindow = nil;
+    _alertWindow = nil;
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -1087,9 +1082,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
                 outPutImage(blurImage);
             });
         }
-        
     });
 }
-
 
 @end

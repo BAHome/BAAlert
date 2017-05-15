@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, BAAlertAnimatingStyle) {
     BAAlertAnimatingStyleFall,
 };
 
+/*! BAActionSheet 样式 */
 typedef NS_ENUM(NSInteger, BAActionSheetStyle) {
     /*!
      *  普通样式

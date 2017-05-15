@@ -121,6 +121,13 @@
     }
 }
 
+- (void)dealloc
+{
+    [self removeFromSuperview];
+    
+}
+
+
 #pragma mark - setter / getter
 
 - (UIView *)viewPwdBgView
