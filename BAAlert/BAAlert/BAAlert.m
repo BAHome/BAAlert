@@ -669,17 +669,20 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 #pragma mark - 清除所有视图
 - (void)ba_removeSelf
 {
-//    NSLog(@"【 %@ 】已经释放！",[self class]);
+    //    NSLog(@"【 %@ 】已经释放！",[self class]);
     if (_titleLabel)
     {
+        [_titleLabel removeFromSuperview];
         _titleLabel = nil;
     }
     if (_imageView)
     {
+        [_imageView removeFromSuperview];
         _imageView = nil;
     }
     if (_messageLabel)
     {
+        [_messageLabel removeFromSuperview];
         _messageLabel = nil;
     }
     
@@ -687,18 +690,22 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     
     if (_customView)
     {
+        [_customView removeFromSuperview];
         _customView = nil;
     }
     if (_containerView)
     {
+        [_containerView removeFromSuperview];
         _containerView = nil;
     }
     if (_blurImageView)
     {
+        [_blurImageView removeFromSuperview];
         _blurImageView = nil;
     }
     if (_scrollView)
     {
+        [_scrollView removeFromSuperview];
         _scrollView = nil;
     }
     _alertWindow = nil;
