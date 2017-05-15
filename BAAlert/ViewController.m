@@ -344,8 +344,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 - (void)alert5
 {
     /*! 5、完全自定义alert */
-    
-    
     _customView = [CustomView new];
     self.customView.frame = CGRectMake(50, SCREENHEIGHT - 300, SCREENWIDTH - 50 * 2, 162);
 
