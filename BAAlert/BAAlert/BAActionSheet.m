@@ -339,7 +339,7 @@ static NSString * const kCellID = @"BAActionSheetCell";
         header.tag = section;
         
         NSString *imageName = @"";
-        NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlert" withExtension:@"bundle"];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlertBundle" withExtension:@"bundle"];
         if (url)
         {
             imageName = @"BAAlert.bundle/arow_down";
