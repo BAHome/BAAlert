@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.source_files = 'BAAlert/BAAlert/*.{h,m}'
     s.requires_arc = true
     s.resource_bundles = {
-        'BAAlert' => ['BAAlert/BAAlert/Images/*.{*.png}']
+        'BAAlert' => ['BAAlert/BAAlert/**/**/*.{*.png}']
     }
 
 end
