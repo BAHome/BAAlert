@@ -65,12 +65,13 @@
 ---
 
 ## 0、安装、导入示例和源码地址：
-* 0.1、pod 导入：` pod 'BAAlert' ` 【最新版本：1.1.8】
+* 0.1、pod 导入：` pod 'BAAlert' ` ` pod 'BAAlert-Swift' ` 【最新版本：1.1.8】
 * 0.2、使用方法2：下载demo，把 BAAlert 文件夹拖入项目即可，<br>
 导入头文件：<br>
 `  #import "BAAlert_OC.h" `<br>
 * 0.3、项目源码地址：<br>
- OC版 ：[https://github.com/BAHome/BAAlert](https://github.com/BAHome/BAAlert)<br>
+ OC 版 ：[https://github.com/BAHome/BAAlert](https://github.com/BAHome/BAAlert)<br>
+ swift 版 ：[https://github.com/BAHome/BAAlert-Swift](https://github.com/BAHome/BAAlert-Swift)<br>
 
 ---
 
