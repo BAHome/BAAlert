@@ -27,48 +27,13 @@ static NSString * const kCellID = @"BAActionSheetCell";
 
 @property (nonatomic, strong) UIWindow *actionSheetWindow;
 @property (nonatomic, strong) UIView *headerView;
-@property(nonatomic, strong) NSIndexPath *indexPath;
-@property(nonatomic, assign) BOOL isExpand;
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, assign) BOOL isExpand;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
 @implementation BAActionSheet
-
-///*!
-// *
-// *  @param title             标题内容(可空)
-// *  @param style             样式
-// *  @param contentArray      选项数组(NSString数组)
-// *  @param imageArray        图片数组(UIImage数组)
-// *  @param contentColorArray 内容颜色数组
-// *  @param titleColor    titleColor
-// *  @param configuration 属性配置：如 bgColor、buttonTitleColor、isTouchEdgeHide...
-// *  @param actionBlock  block回调点击的选项
-// */
-//+ (void)ba_actionSheetShowWithTitle:(NSString *)title
-//                              style:(BAActionSheetStyle)style
-//                       contentArray:(NSArray <NSString *> *)contentArray
-//                         imageArray:(NSArray <UIImage *> *)imageArray
-//                         titleColor:(UIColor *)titleColor
-//                  contentColorArray:(NSArray <UIColor *> *)contentColorArray
-//                      configuration:(BAActionSheet_ConfigBlock)configuration
-//                        actionBlock:(BAAlert_ButtonActionBlock)actionBlock
-//{
-//    BAActionSheet *actionSheet       = [[self alloc] init];
-//    actionSheet.dataArray            = contentArray;
-//    actionSheet.actionBlock          = actionBlock;
-//    actionSheet.viewStyle            = style;
-//    actionSheet.imageArray           = imageArray;
-//    actionSheet.contentColorArray    = contentColorArray;
-//    actionSheet.title                = title;
-//    actionSheet.titleColor = titleColor;
-//    if (configuration)
-//    {
-//        configuration(actionSheet);
-//    }
-//    [actionSheet ba_actionSheetShow];
-//}
-
 
 /*!
  *
@@ -339,15 +304,8 @@ static NSString * const kCellID = @"BAActionSheetCell";
         header.tag = section;
         
         NSString *imageName = @"";
-//        NSURL *url = [[NSBundle mainBundle] URLForResource:@"BAAlert" withExtension:@"bundle"];
-//        if (url)
-//        {
-            imageName = @"BAAlert.bundle/Images/arow_down";
-//        }
-//        else
-//        {
-//            imageName = @"arow_down";
-//        }
+        imageName = @"BAAlert.bundle/Images/arow_down";
+
         UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [expandButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
         expandButton.frame = CGRectMake(SCREENWIDTH - 50, 0, 30, 30);
@@ -407,7 +365,8 @@ static NSString * const kCellID = @"BAActionSheetCell";
     min_w = SCREENWIDTH;
     min_h = (self.title.length > 0) ? 44 : 0;
     self.headerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
-    
+    _titleLabel.frame = self.headerView.bounds;
+
     
     header_h = CGRectGetHeight(self.headerView.frame);
     if (self.actionSheetType == BAActionSheetTypeCustom)
@@ -597,12 +556,11 @@ static NSString * const kCellID = @"BAActionSheetCell";
     {
         _headerView = [UIView new];
         
-        UILabel *titleLabel = [UILabel new];
-        titleLabel.frame = CGRectMake(50, 0, SCREENWIDTH - 50 * 2, 44);
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.text = self.title;
+        _titleLabel = [UILabel new];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.text = self.title;
         
-        [self.headerView addSubview:titleLabel];
+        [self.headerView addSubview:_titleLabel];
     }
     return _headerView;
 }
