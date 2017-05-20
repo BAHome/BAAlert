@@ -57,6 +57,14 @@
  
  */
 
+
+
+#ifndef BAAlert_OC_h
+#define BAAlert_OC_h
+
+#import "BAAlert.h"
+#import "BAActionSheet.h"
+
 /*!
  *********************************************************************************
  ************************************ 更新说明 ************************************
@@ -109,13 +117,6 @@
  1.1.0.6、删除了部分代码和属性，具体见源码 和 demo
  
  */
-
-
-#ifndef BAAlert_OC_h
-#define BAAlert_OC_h
-
-#import "BAAlert.h"
-#import "BAActionSheet.h"
 
 
 #endif /* BAAlert_OC_h */

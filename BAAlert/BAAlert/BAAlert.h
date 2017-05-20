@@ -68,5 +68,4 @@ typedef void(^BAAlert_ConfigBlock)(BAAlert *tempView);
  */
 - (void)ba_alertHidden;
 
-
 @end
