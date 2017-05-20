@@ -1,4 +1,9 @@
 # BAAlert
+![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) 
+![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg) 
+![](https://img.shields.io/cocoapods/v/BAAlert.svg?style=flat) ![](https://img.shields.io/cocoapods/dt/BAAlert.svg
+)  [![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123)
+
 
 目前为止，最为精简的 alert 和 actionSheet 封装！BAAlert 是原 DSAlert 的转移，以后更新都在这里更新，希望大家注意下！
 
