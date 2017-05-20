@@ -204,6 +204,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         tempView.title = @"支付方式";
         tempView.dataArray = dataArray;
         tempView.isTouchEdgeHide = NO;
+        tempView.showAnimate = YES;
         
         self.actionSheet = tempView;
     } actionBlock:^(NSIndexPath *indexPath, BAActionSheetModel *model) {
@@ -299,13 +300,13 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         BAKit_StrongSelf
         //        temp.bgColor       = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.3];
         /*! 开启边缘触摸隐藏alertView */
-        tempView.isTouchEdgeHide = NO;
+        tempView.isTouchEdgeHide = YES;
         /*! 添加高斯模糊的样式 */
         tempView.blurEffectStyle = BAAlertBlurEffectStyleLight;
         /*! 开启动画 */
-        //        temp.isShowAnimate   = YES;
+                tempView.showAnimate   = YES;
         //        /*! 进出场动画样式 默认为：1 */
-        //        temp.animatingStyle  = 1;
+        //        tempView.animatingStyle  = 1;
         self.alertView1 = tempView;
     } actionBlock:^(NSInteger index) {
         BAKit_StrongSelf
@@ -329,7 +330,8 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
         /*! 自定义按钮文字颜色 */
         //    tempView.buttonTitleColor = [UIColor orangeColor];
         tempView.bgColor = [UIColor colorWithRed:1.0 green:1.0 blue:0 alpha:0.3];
-        
+        tempView.isTouchEdgeHide = YES;
+
         /*! 是否开启进出场动画 默认：NO，如果 YES ，并且同步设置进出场动画枚举为默认值：1 */
         tempView.showAnimate = YES;
         tempView.animatingStyle  = BAAlertAnimatingStyleShake;

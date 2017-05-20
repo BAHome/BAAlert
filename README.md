@@ -6,6 +6,12 @@
 
 ## 更新提示：【倒叙更新】
 
+ 最新更新时间：2017-05-20 【倒叙】 <br>
+ 最新Version：【Version：1.1.9】 <br>
+ 更新内容： <br>
+ 1.1.9.1、修复动画过度白屏问题  <br>
+
+ 
 最新更新时间：2017-05-15 【倒叙】 <br>
 最新Version：【Version：1.1.8】 <br>
 更新内容： <br>
@@ -65,7 +71,7 @@
 ---
 
 ## 0、安装、导入示例和源码地址：
-* 0.1、pod 导入：` pod 'BAAlert' ` ` pod 'BAAlert-Swift' ` 【最新版本：1.1.8】
+* 0.1、pod 导入：` pod 'BAAlert' ` ` pod 'BAAlert-Swift' ` 【最新版本：1.1.9】
 * 0.2、使用方法2：下载demo，把 BAAlert 文件夹拖入项目即可，<br>
 导入头文件：<br>
 `  #import "BAAlert_OC.h" `<br>
