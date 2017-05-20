@@ -132,15 +132,19 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     headerTitle.numberOfLines = 0;
     [headerView addSubview:headerTitle];
     
+    headerTitle.frame = CGRectMake(20, 0, SCREENWIDTH - 40, 40);
+
     if (0 == section)
     {
-        headerTitle.frame = CGRectMake(20, 0, SCREENWIDTH - 40, 40);
         headerTitle.text = @"BAAlert 的几种日常用法，高斯模糊、炫酷动画，应有尽有！";
     }
     else if (1 == section)
     {
-        headerTitle.frame = CGRectMake(20, 0, SCREENWIDTH - 40, 20);
         headerTitle.text = @"BAActionSheet";
+    }
+    else if (2 == section)
+    {
+        headerTitle.text = @"BAAlert特点";
     }
     
     return headerView;
@@ -148,7 +152,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return (0 == section) ? 40 : 20;
+    return 40;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -468,7 +472,6 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     return _tableView;
 }
 
-
 - (NSArray *)dataArray
 {
     if ( !_dataArray )
@@ -482,7 +485,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
                       @[@"1、actionsheet 默认样式：title、subTitle、image",
                         @"2、actionsheet custom样式，类似于微博的 actionsheet",
                         @"3、actionsheet 展开选择样式，可以展开收回"],
-                      @[@"BAAlert特点：\n1、手势触摸隐藏开关，可随时开关\n2、可以自定义背景图片、背景颜色、按钮颜色\n3、可以添加文字和图片，且可以滑动查看！\n4、横竖屏适配完美\n5、有各种炫酷动画展示你的alert\n6、可以自定义按钮颜色\n7、理论完全兼容现有所有 iOS 系统版本"
+                      @[@"1、手势触摸隐藏开关，可随时开关\n2、可以自定义背景图片、背景颜色、按钮颜色\n3、可以添加文字和图片，且可以滑动查看！\n4、横竖屏适配完美\n5、有各种炫酷动画展示你的alert\n6、可以自定义按钮颜色\n7、理论完全兼容现有所有 iOS 系统版本"
                         ], nil];
     }
     return _dataArray;
