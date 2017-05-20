@@ -83,7 +83,9 @@
 
 ## 1、图片示例：
 
-<!--![BAAlert.gif](https://github.com/BAHome/BAAlert/blob/master/BAAlert.gif)-->
+![BAAlert1.gif](https://github.com/BAHome/BAAlert/blob/master/Images/BAAlert1.gif)
+![BAAlert2.gif](https://github.com/BAHome/BAAlert/blob/master/Images/BAAlert2.gif)
+
 
 ---
 
