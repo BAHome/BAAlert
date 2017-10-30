@@ -367,11 +367,12 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     self.bgColor = BAKit_Color_Translucent_pod;
     self.blurImageView.hidden = NO;
     
+    
     if (self.alertType == BAAlertTypeCustom)
     {
         [self interfaceOrientation:UIInterfaceOrientationPortrait];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardHiddenAction:) name:UIKeyboardWillHideNotification object:nil];
+        
+        
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationRotateAction:) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -749,13 +750,16 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
         NSLog(@"请在动画结束时点击！");
         return;
     }
+    
     if (!self.isTouchEdgeHide)
     {
-        NSLog(@"触摸了View边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！");
+        NSLog(@"触摸了 View 边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！");
+        return;
     }
     
     if ([view isKindOfClass:[self class]])
     {
+        [self endEditing:YES];
         [self ba_alertHidden];
     }
 }
@@ -1037,6 +1041,17 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
 - (void)setIsAnimating:(BOOL)isAnimating
 {
     _isAnimating = isAnimating;
+}
+
+- (void)setIsNeedAutoKeyboardFrame:(BOOL)isNeedAutoKeyboardFrame
+{
+    _isNeedAutoKeyboardFrame = isNeedAutoKeyboardFrame;
+    
+    if (self.isNeedAutoKeyboardFrame)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardShowAction:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardHiddenAction:) name:UIKeyboardWillHideNotification object:nil];
+    }
 }
 
 - (void)setBgImageName:(NSString *)bgImageName

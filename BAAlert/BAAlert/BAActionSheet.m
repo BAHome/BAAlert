@@ -338,9 +338,11 @@ static NSString * const kCellID = @"BAActionSheetCell";
         NSLog(@"请在动画结束时点击！");
         return;
     }
+    
     if (!self.isTouchEdgeHide)
     {
-        NSLog(@"触摸了View边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！");
+        NSLog(@"触摸了 View 边缘，但您未开启触摸边缘隐藏方法，请设置 isTouchEdgeHide 属性为 YES 后再使用！");
+        return;
     }
     
     if ([view isKindOfClass:[self class]])

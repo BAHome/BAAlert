@@ -53,6 +53,7 @@
 		C43D263F1EF77FC200CD078C /* BAAlert_Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlert_Config.h; sourceTree = "<group>"; };
 		C43D26401EF77FC200CD078C /* BAAlert_OC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlert_OC.h; sourceTree = "<group>"; };
 		C43D26481EF77FE100CD078C /* BAKit_ConfigurationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKit_ConfigurationDefine.h; sourceTree = "<group>"; };
+		C45A43571FA714EB00FAF20E /* BAAlert_Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAAlert_Version.h; sourceTree = "<group>"; };
 		C46BF7E11EC5BC5C00A56A25 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
 		C46BF7E21EC5BC5C00A56A25 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +132,7 @@
 				C43D263C1EF77FC200CD078C /* BAAlert.bundle */,
 				18822EB41F32F31C0070938B /* UIView+BAAnimation.h */,
 				18822EB51F32F31C0070938B /* UIView+BAAnimation.m */,
+				C45A43571FA714EB00FAF20E /* BAAlert_Version.h */,
 			);
 			path = BAAlert;
 			sourceTree = "<group>";

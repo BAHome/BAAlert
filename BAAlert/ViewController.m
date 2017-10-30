@@ -421,7 +421,7 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
 
 - (void)alert5
 {
-    /*! 5、完全自定义alert */
+    /*! 5、完全自定义alert，注意：此处不能使用懒加载创建自定义的 view，只能每次弹出都创建，以免第二次弹出不显示，因为 alert 在消失的时候，会将 自定义的 view 全部移除！ */
     _customView = [CustomView new];
     self.customView.frame = CGRectMake(50, BAKit_SCREEN_HEIGHT - 200, BAKit_SCREEN_WIDTH - 50 * 2, 162);
 //    设置居中
@@ -429,8 +429,11 @@ static NSString * const titleMsg2 = @"对于 MacBook，我们给自己设定了�
     /*! 使用 BAAlert 弹出自定义View  */
     BAKit_WeakSelf
     [BAAlert ba_alertShowCustomView:self.customView configuration:^(BAAlert *tempView) {
+        
         BAKit_StrongSelf
-        tempView.isTouchEdgeHide = YES;
+        tempView.isTouchEdgeHide = NO;
+        /*! 是否需要开启键盘自适应 默认：NO，注意：如果用了第三方键盘适配的话，可以将此属性设置为 NO！以免冲突 */
+        tempView.isNeedAutoKeyboardFrame = NO;
         tempView.animatingStyle = BAAlertAnimatingStyleScale;
         self.alertView5 = tempView;
     }];

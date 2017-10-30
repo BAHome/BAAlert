@@ -85,6 +85,9 @@ typedef void(^BAAlert_ConfigBlock)(BAAlert *tempView);
 /*! 背景高斯模糊枚举 默认：没有模糊效果 */
 @property (nonatomic, assign) BAAlertBlurEffectStyle blurEffectStyle;
 
+/*! 是否需要开启键盘自适应 默认：NO，注意：如果用了第三方键盘适配的话，可以将此属性设置为 NO！以免冲突 */
+@property(nonatomic, assign) BOOL isNeedAutoKeyboardFrame;
+
 /*!
  *  创建一个完全自定义的 alertView
  *
