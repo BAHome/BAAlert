@@ -88,6 +88,4 @@ typedef NS_ENUM(NSUInteger, BAActionSheetType) {
     BAActionSheetTypeExpand
 };
 
-typedef void(^BAAlert_ButtonActionBlock)(NSInteger index);
-
 #endif /* BAAlert_Config_h */

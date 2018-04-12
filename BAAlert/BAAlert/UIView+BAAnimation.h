@@ -61,7 +61,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
-
+NS_ASSUME_NONNULL_BEGIN
 /**
  view 的 进出场动画 方向
 
@@ -227,18 +227,20 @@ typedef NS_ENUM(NSInteger, UIViewLinearGradientDirection)
                                    newCenter:(CGPoint)newCenter
                                  finishBlock:(void(^)())finishBlock;
 
-/*!
- *  弹簧动画
- *
- *  @param duration              持续时间，默认：1.5f
- *  @param damping               弹性比率
- *  @param initialSpringVelocity 初始弹簧速度
- *  @param startOptions          开始动画样式
- *  @param finishOptions         开始动画样式
- *  @param startBlock            开始动画回调
- *  @param finishBlock           结束动画回调
+/**
+ 弹簧动画
+ 
+ @param duration 持续时间，默认：1.5f
+ @param delay delay
+ @param damping 震动效果，范围 0~1，数值越小震动效果越明显
+ @param initialSpringVelocity 初始速度，数值越大初始速度越快，默认：1.0f
+ @param startOptions 动画的过渡效果
+ @param finishOptions 动画的过渡效果
+ @param startBlock 开始动画回调
+ @param finishBlock 结束动画回调
  */
 - (void)ba_animation_springWithDuration:(CGFloat)duration
+                                  delay:(CGFloat)delay
                                 damping:(CGFloat)damping
                   initialSpringVelocity:(CGFloat)initialSpringVelocity
                            startOptions:(UIViewAnimationOptions)startOptions
@@ -277,11 +279,11 @@ typedef NS_ENUM(NSInteger, UIViewLinearGradientDirection)
 - (void)ba_animation_flipWithDuration:(NSTimeInterval)duration
                             direction:(BAKit_ViewAnimationFlipDirectionType)direction;
 
-- (void)translateAroundTheView:(UIView *)topView
-                      duration:(CGFloat)duration
-                     direction:(UIViewAnimationTranslationDirection)direction
-                        repeat:(BOOL)repeat
-                 startFromEdge:(BOOL)startFromEdge;
+- (void)ba_animation_translateAroundTheView:(UIView *)topView
+                                   duration:(CGFloat)duration
+                                  direction:(UIViewAnimationTranslationDirection)direction
+                                     repeat:(BOOL)repeat
+                              startFromEdge:(BOOL)startFromEdge;
 
 /**
  线性梯度：渐变色，注意：渐变颜色必须要有两个及两个以上颜色，否则设置无效！
@@ -290,10 +292,37 @@ typedef NS_ENUM(NSInteger, UIViewLinearGradientDirection)
  @param frame frame
  @param direction 方向，横向还是纵向
  */
-- (void)ba_createGradientWithColorArray:(NSArray *)colorArray
-                                  frame:(CGRect)frame
-                              direction:(UIViewLinearGradientDirection)direction;
+- (void)ba_animation_createGradientWithColorArray:(NSArray *)colorArray
+                                            frame:(CGRect)frame
+                                        direction:(UIViewLinearGradientDirection)direction;
 
+/**
+ *  摇晃动画：用于错误提示，晃动的幅度，默认：5.0f，晃动的次数，默认：5.0f
+ */
+- (void)ba_animation_viewAnimationShake;
+
+/**
+ 脉冲动画
+ 
+ @param duration duration
+ */
+- (void)ba_animation_pulseViewWithDuration:(CGFloat)duration;
+
+/**
+ 运动效果
+ */
+- (void)ba_animation_applyMotionEffects;
+
+/**
+ UIView：简单的 alpha 动画
+ 
+ @param alpha alpha description
+ @param duration duration description
+ @param animated animated description
+ */
+- (void)ba_animationWithAlpha:(CGFloat)alpha
+                     duration:(NSTimeInterval)duration
+                     animated:(BOOL)animated;
 @end
-
+NS_ASSUME_NONNULL_END
 

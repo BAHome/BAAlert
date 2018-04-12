@@ -113,7 +113,7 @@
             [BAAlert ba_alertShowWithTitle:@"温馨提示：" message:@"请输入正确的密码！" image:nil buttonTitleArray:@[@"确定"] buttonTitleColorArray:@[[UIColor redColor], [UIColor cyanColor]] configuration:^(BAAlert *tempView) {
                 BAKit_StrongSelf
                 self.alert = tempView;
-            } actionBlock:^(NSInteger index) {
+            } actionBlock:^(BAAlert *tempView,NSInteger index) {
                 
                 [self.alert ba_alertHidden];
             }];

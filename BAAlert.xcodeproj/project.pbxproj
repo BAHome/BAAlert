@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18822EB61F32F31C0070938B /* UIView+BAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18822EB51F32F31C0070938B /* UIView+BAAnimation.m */; };
 		C431D9C21EC03F150081799B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9C11EC03F150081799B /* main.m */; };
 		C431D9C51EC03F150081799B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C431D9C41EC03F150081799B /* AppDelegate.m */; };
 		C431D9CB1EC03F150081799B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C431D9C91EC03F150081799B /* Main.storyboard */; };
@@ -23,11 +22,11 @@
 		C43D26451EF77FC200CD078C /* BAAlert.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C43D263C1EF77FC200CD078C /* BAAlert.bundle */; };
 		C43D26461EF77FC200CD078C /* BAAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D263E1EF77FC200CD078C /* BAAlert.m */; };
 		C46BF7E31EC5BC5C00A56A25 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46BF7E21EC5BC5C00A56A25 /* CustomView.m */; };
+		C48B43C4207F5F89008C99C0 /* UIView+BAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C48B43C3207F5F89008C99C0 /* UIView+BAAnimation.m */; };
+		C48B43C7207F5FB7008C99C0 /* CALayer+BAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C48B43C6207F5FB7008C99C0 /* CALayer+BAAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18822EB41F32F31C0070938B /* UIView+BAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BAAnimation.h"; sourceTree = "<group>"; };
-		18822EB51F32F31C0070938B /* UIView+BAAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BAAnimation.m"; sourceTree = "<group>"; };
 		C431D9BD1EC03F150081799B /* BAAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C431D9C11EC03F150081799B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C431D9C31EC03F150081799B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,6 +55,10 @@
 		C45A43571FA714EB00FAF20E /* BAAlert_Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAAlert_Version.h; sourceTree = "<group>"; };
 		C46BF7E11EC5BC5C00A56A25 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
 		C46BF7E21EC5BC5C00A56A25 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		C48B43C2207F5F89008C99C0 /* UIView+BAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BAAnimation.h"; sourceTree = "<group>"; };
+		C48B43C3207F5F89008C99C0 /* UIView+BAAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BAAnimation.m"; sourceTree = "<group>"; };
+		C48B43C5207F5FB7008C99C0 /* CALayer+BAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+BAAnimation.h"; sourceTree = "<group>"; };
+		C48B43C6207F5FB7008C99C0 /* CALayer+BAAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+BAAnimation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,9 +133,11 @@
 				C43D263A1EF77FC200CD078C /* BAActionSheetCell.h */,
 				C43D263B1EF77FC200CD078C /* BAActionSheetCell.m */,
 				C43D263C1EF77FC200CD078C /* BAAlert.bundle */,
-				18822EB41F32F31C0070938B /* UIView+BAAnimation.h */,
-				18822EB51F32F31C0070938B /* UIView+BAAnimation.m */,
 				C45A43571FA714EB00FAF20E /* BAAlert_Version.h */,
+				C48B43C5207F5FB7008C99C0 /* CALayer+BAAnimation.h */,
+				C48B43C6207F5FB7008C99C0 /* CALayer+BAAnimation.m */,
+				C48B43C2207F5F89008C99C0 /* UIView+BAAnimation.h */,
+				C48B43C3207F5F89008C99C0 /* UIView+BAAnimation.m */,
 			);
 			path = BAAlert;
 			sourceTree = "<group>";
@@ -168,7 +173,7 @@
 				TargetAttributes = {
 					C431D9BC1EC03F150081799B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8JQ2PK6XN8;
+						DevelopmentTeam = JB3QR65942;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -216,11 +221,12 @@
 				C43D26431EF77FC200CD078C /* BAActionSheet.m in Sources */,
 				C431D9F11EC043B50081799B /* ViewController.m in Sources */,
 				C431D9C51EC03F150081799B /* AppDelegate.m in Sources */,
-				18822EB61F32F31C0070938B /* UIView+BAAnimation.m in Sources */,
+				C48B43C7207F5FB7008C99C0 /* CALayer+BAAnimation.m in Sources */,
 				C43D26441EF77FC200CD078C /* BAActionSheetCell.m in Sources */,
 				C431D9C21EC03F150081799B /* main.m in Sources */,
 				C46BF7E31EC5BC5C00A56A25 /* CustomView.m in Sources */,
 				C431D9F21EC043B50081799B /* ViewController2.m in Sources */,
+				C48B43C4207F5F89008C99C0 /* UIView+BAAnimation.m in Sources */,
 				C43D26461EF77FC200CD078C /* BAAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,7 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8JQ2PK6XN8;
+				DEVELOPMENT_TEAM = JB3QR65942;
 				INFOPLIST_FILE = BAAlert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -354,7 +360,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8JQ2PK6XN8;
+				DEVELOPMENT_TEAM = JB3QR65942;
 				INFOPLIST_FILE = BAAlert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

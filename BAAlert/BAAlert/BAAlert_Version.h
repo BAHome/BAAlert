@@ -21,6 +21,13 @@
  OC 版 ：https://github.com/BAHome/BAAlert
  系统原生 UIAlertController 分类封装：https://github.com/BAHome/BAAlertController
  
+ 
+ 最新更新时间：2018-04-12 【倒叙】 <br>
+ 最新Version：【Version：1.2.6】 <br>
+ 更新内容： <br>
+ 1.2.6.1、新增 进场动画持续时间 默认：0.5f (startAnimationDuration/endAnimationDuration) <br>
+ 1.2.6.2、优化部分动画封装<br>
+
  最新更新时间：2017-10-30 【倒叙】 <br>
  最新Version：【Version：1.2.5】 <br>
  更新内容： <br>

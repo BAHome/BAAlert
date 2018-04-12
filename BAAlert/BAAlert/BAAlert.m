@@ -367,12 +367,12 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     self.bgColor = BAKit_Color_Translucent_pod;
     self.blurImageView.hidden = NO;
     
+    self.startAnimationDuration = 0.5;
+    self.endAnimationDuration = 0.5;
     
     if (self.alertType == BAAlertTypeCustom)
     {
         [self interfaceOrientation:UIInterfaceOrientationPortrait];
-        
-        
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationRotateAction:) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -480,7 +480,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     
     if (self.actionBlock)
     {
-        self.actionBlock(button.tag);
+        self.actionBlock(self,button.tag);
     }
 }
 
@@ -617,7 +617,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     BAKit_WeakSelf
     if (self.animatingStyle == BAAlertAnimatingStyleScale)
     {
-        [animationView ba_animation_scaleShowWithDuration:0.5 ratio:1.1 finishBlock:^{
+        [animationView ba_animation_scaleShowWithDuration:self.startAnimationDuration ratio:1.1 finishBlock:^{
             BAKit_StrongSelf
             self.isAnimating = NO;
         }];
@@ -625,7 +625,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     else if (self.animatingStyle == BAAlertAnimatingStyleShake)
     {
-        [animationView ba_animation_showFromPositionType:BAKit_ViewAnimationEnterDirectionTypeBottom duration:0.5 finishBlock:^{
+        [animationView ba_animation_showFromPositionType:BAKit_ViewAnimationEnterDirectionTypeBottom duration:self.startAnimationDuration finishBlock:^{
             BAKit_StrongSelf
             self.isAnimating = NO;
         }];
@@ -633,7 +633,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     else if (self.animatingStyle == BAAlertAnimatingStyleFall)
     {
-        [animationView ba_animation_showFromPositionType:BAKit_ViewAnimationEnterDirectionTypeTop duration:0.5 finishBlock:^{
+        [animationView ba_animation_showFromPositionType:BAKit_ViewAnimationEnterDirectionTypeTop duration:self.startAnimationDuration finishBlock:^{
             BAKit_StrongSelf
             self.isAnimating = NO;
         }];
@@ -647,7 +647,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     BAKit_WeakSelf
     if (self.animatingStyle == BAAlertAnimatingStyleScale)
     {
-        [animationView ba_animation_scaleDismissWithDuration:0.5 ratio:1.1 finishBlock:^{
+        [animationView ba_animation_scaleDismissWithDuration:self.endAnimationDuration ratio:1.1 finishBlock:^{
             BAKit_StrongSelf
             self.isAnimating = NO;
             [self ba_removeSelf];
@@ -655,7 +655,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     else if (self.animatingStyle == BAAlertAnimatingStyleShake)
     {
-        [animationView ba_animation_dismissFromPositionType:BAKit_ViewAnimationEnterDirectionTypeTop duration:0.5 finishBlock:^{
+        [animationView ba_animation_dismissFromPositionType:BAKit_ViewAnimationEnterDirectionTypeTop duration:self.endAnimationDuration finishBlock:^{
             BAKit_StrongSelf
             self.isAnimating = NO;
             [self ba_removeSelf];
@@ -663,7 +663,7 @@ typedef NS_ENUM(NSUInteger, BAAlertType) {
     }
     else if (self.animatingStyle == BAAlertAnimatingStyleFall)
     {
-        [animationView ba_animation_dismissFromPositionType:BAKit_ViewAnimationEnterDirectionTypeBottom duration:0.5 finishBlock:^{
+        [animationView ba_animation_dismissFromPositionType:BAKit_ViewAnimationEnterDirectionTypeBottom duration:self.endAnimationDuration finishBlock:^{
             BAKit_StrongSelf
             self.isAnimating = NO;
             [self ba_removeSelf];

@@ -64,6 +64,7 @@
 @class BAAlert;
 
 typedef void(^BAAlert_ConfigBlock)(BAAlert *tempView);
+typedef void(^BAAlert_ButtonActionBlock)(BAAlert *tempView, NSInteger index);
 
 @interface BAAlert : UIView
 
@@ -87,6 +88,12 @@ typedef void(^BAAlert_ConfigBlock)(BAAlert *tempView);
 
 /*! 是否需要开启键盘自适应 默认：NO，注意：如果用了第三方键盘适配的话，可以将此属性设置为 NO！以免冲突 */
 @property(nonatomic, assign) BOOL isNeedAutoKeyboardFrame;
+
+/*! 进场动画持续时间 默认：0.5f */
+@property (nonatomic, assign) double startAnimationDuration;
+
+/*! 出场动画持续时间 默认：0.5f */
+@property (nonatomic, assign) double endAnimationDuration;
 
 /*!
  *  创建一个完全自定义的 alertView

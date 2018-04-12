@@ -8,6 +8,8 @@
 
 #import "UIView+BAAnimation.h"
 
+#import "CALayer+BAAnimation.h"
+
 @implementation UIView (BAAnimation)
 
 /*!
@@ -37,6 +39,7 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:duration animations:^{
             self.transform = CGAffineTransformIdentity;
+//            self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         } completion:^(BOOL finished) {
             if (finishBlock)
             {
@@ -159,10 +162,10 @@
     {
         duration = 1.5f;
     }
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:duration animations:^{
         self.frame = newFrame;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.0f animations:^{
+        [UIView animateWithDuration:duration animations:^{
             self.frame = originalFrame;
         } completion:^(BOOL finished) {
             if (finishBlock)
@@ -193,7 +196,7 @@
     [UIView animateWithDuration:duration animations:^{
         self.bounds = newBounds;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.0f animations:^{
+        [UIView animateWithDuration:duration animations:^{
             self.bounds = originalBounds;
         } completion:^(BOOL finished) {
             if (finishBlock)
@@ -221,10 +224,10 @@
     {
         duration = 1.5f;
     }
-    [UIView animateWithDuration:0.5f animations:^{
+    [UIView animateWithDuration:duration animations:^{
         self.center = newCenter;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:duration animations:^{
             self.center = originalCenter;
         } completion:^(BOOL finished) {
             if (finishBlock)
@@ -235,18 +238,20 @@
     }];
 }
 
-/*!
- *  弹簧动画
- *
- *  @param duration              持续时间，默认：1.5f
- *  @param damping               弹性比率，默认：1.0f
- *  @param initialSpringVelocity 初始弹簧速度，默认：3.0f
- *  @param startOptions          开始动画样式
- *  @param finishOptions         开始动画样式
- *  @param startBlock            开始动画回调
- *  @param finishBlock           结束动画回调
+/**
+ 弹簧动画
+
+ @param duration 持续时间，默认：1.5f
+ @param delay delay
+ @param damping 震动效果，范围0~1，数值越小震动效果越明显
+ @param initialSpringVelocity 初始速度，数值越大初始速度越快，默认：1.0f
+ @param startOptions 动画的过渡效果
+ @param finishOptions 动画的过渡效果
+ @param startBlock 开始动画回调
+ @param finishBlock 结束动画回调
  */
 - (void)ba_animation_springWithDuration:(CGFloat)duration
+                                  delay:(CGFloat)delay
                                 damping:(CGFloat)damping
                   initialSpringVelocity:(CGFloat)initialSpringVelocity
                            startOptions:(UIViewAnimationOptions)startOptions
@@ -264,9 +269,9 @@
     }
     if (!initialSpringVelocity)
     {
-        initialSpringVelocity = 3.0f;
+        initialSpringVelocity = 1.0f;
     }
-    [UIView animateWithDuration:duration delay:0.f usingSpringWithDamping:damping initialSpringVelocity:initialSpringVelocity options:startOptions animations:^{
+    [UIView animateWithDuration:duration delay:delay usingSpringWithDamping:damping initialSpringVelocity:initialSpringVelocity options:startOptions animations:^{
         if (startBlock)
         {
             startBlock();
@@ -485,7 +490,7 @@
     [self.layer addAnimation:transition forKey:@"flip"];
 }
 
-- (void)translateAroundTheView:(UIView *)topView
+- (void)ba_animation_translateAroundTheView:(UIView *)topView
                       duration:(CGFloat)duration
                      direction:(UIViewAnimationTranslationDirection)direction
                         repeat:(BOOL)repeat
@@ -526,7 +531,7 @@
                 {
                     if(repeat)
                     {
-                        [self translateAroundTheView:topView duration:duration direction:direction repeat:repeat startFromEdge:startFromEdge];
+                        [self ba_animation_translateAroundTheView:topView duration:duration direction:direction repeat:repeat startFromEdge:startFromEdge];
                     }
                 }
             }];
@@ -541,7 +546,7 @@
  @param frame frame
  @param direction 方向，横向还是纵向
  */
-- (void)ba_createGradientWithColorArray:(NSArray *)colorArray
+- (void)ba_animation_createGradientWithColorArray:(NSArray *)colorArray
                                   frame:(CGRect)frame
                               direction:(UIViewLinearGradientDirection)direction
 {
@@ -606,5 +611,133 @@
     }
     [self.layer insertSublayer:gradient atIndex:0];
 }
+
+/**
+ *  摇晃动画：用于错误提示，晃动的幅度，默认：5.0f，晃动的次数，默认：5.0f
+ */
+- (void)ba_animation_viewAnimationShake
+{
+    [self.layer ba_layer_animationShakeWithValue:5.0f repeatCount:2.0f];
+}
+
+/**
+ 脉冲动画
+
+ @param duration duration
+ */
+- (void)ba_animation_pulseViewWithDuration:(CGFloat)duration
+{
+    [UIView animateWithDuration:duration / 6 animations:^{
+        [self setTransform:CGAffineTransformMakeScale(1.1, 1.1)];
+    } completion:^(BOOL finished) {
+        if(finished)
+        {
+            [UIView animateWithDuration:duration / 6 animations:^{
+                [self setTransform:CGAffineTransformMakeScale(0.96, 0.96)];
+            } completion:^(BOOL finished) {
+                if(finished)
+                {
+                    [UIView animateWithDuration:duration / 6 animations:^{
+                        [self setTransform:CGAffineTransformMakeScale(1.03, 1.03)];
+                    } completion:^(BOOL finished) {
+                        if(finished)
+                        {
+                            [UIView animateWithDuration:duration / 6 animations:^{
+                                [self setTransform:CGAffineTransformMakeScale(0.985, 0.985)];
+                            } completion:^(BOOL finished) {
+                                if(finished)
+                                {
+                                    [UIView animateWithDuration:duration / 6 animations:^{
+                                        [self setTransform:CGAffineTransformMakeScale(1.007, 1.007)];
+                                    } completion:^(BOOL finished) {
+                                        if(finished)
+                                        {
+                                            [UIView animateWithDuration:duration / 6 animations:^{
+                                                [self setTransform:CGAffineTransformMakeScale(1, 1)];
+                                            } completion:nil];
+                                        }
+                                    }];
+                                }
+                            }];
+                        }
+                    }];
+                }
+            }];
+        }
+    }];
+}
+
+/**
+ 心跳动画
+
+ @param duration duration
+ */
+- (void)ba_animation_heartbeatViewWithDuration:(CGFloat)duration
+{
+    float maxSize = 1.4f, durationPerBeat = 0.5f;
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D scale1 = CATransform3DMakeScale(0.8, 0.8, 1);
+    CATransform3D scale2 = CATransform3DMakeScale(maxSize, maxSize, 1);
+    CATransform3D scale3 = CATransform3DMakeScale(maxSize - 0.3f, maxSize - 0.3f, 1);
+    CATransform3D scale4 = CATransform3DMakeScale(1.0, 1.0, 1);
+    
+    NSArray *frameValues = [NSArray arrayWithObjects:[NSValue valueWithCATransform3D:scale1], [NSValue valueWithCATransform3D:scale2], [NSValue valueWithCATransform3D:scale3], [NSValue valueWithCATransform3D:scale4], nil];
+    
+    [animation setValues:frameValues];
+    
+    NSArray *frameTimes = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.05], [NSNumber numberWithFloat:0.2], [NSNumber numberWithFloat:0.6], [NSNumber numberWithFloat:1.0], nil];
+    [animation setKeyTimes:frameTimes];
+    
+    animation.fillMode = kCAFillModeForwards;
+    animation.duration = durationPerBeat;
+    animation.repeatCount = duration / durationPerBeat;
+    
+    [self.layer addAnimation:animation forKey:@"heartbeat"];
+}
+
+/**
+ 运动效果
+ */
+- (void)ba_animation_applyMotionEffects
+{
+    UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalEffect.minimumRelativeValue = @(-10.0f);
+    horizontalEffect.maximumRelativeValue = @(10.0f);
+    UIInterpolatingMotionEffect *verticalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalEffect.minimumRelativeValue = @(-10.0f);
+    verticalEffect.maximumRelativeValue = @(10.0f);
+    UIMotionEffectGroup *motionEffectGroup = [[UIMotionEffectGroup alloc] init];
+    motionEffectGroup.motionEffects = @[horizontalEffect, verticalEffect];
+    
+    [self addMotionEffect:motionEffectGroup];
+}
+
+/**
+ UIView：简单的 alpha 动画
+
+ @param alpha alpha description
+ @param duration duration description
+ @param animated animated description
+ */
+- (void)ba_animationWithAlpha:(CGFloat)alpha
+                     duration:(NSTimeInterval)duration
+                     animated:(BOOL)animated
+{
+    CGFloat effectiveAlpha = (alpha < 0 || alpha > 1) ? (alpha < 0 ? 0 : 1) : alpha;
+    
+    if (animated)
+    {
+        [UIView animateWithDuration:duration animations:^{
+            self.alpha = effectiveAlpha;
+        }];
+    }
+    else
+    {
+        self.alpha = alpha;
+    }
+}
+
 
 @end

@@ -81,6 +81,12 @@ typedef void(^BAAlert_ConfigBlock)(BAAlert *tempView);
 /*! 是否需要开启键盘自适应 默认：NO，注意：如果用了第三方键盘适配的话，可以将此属性设置为 NO！以免冲突 */
 @property(nonatomic, assign) BOOL isNeedAutoKeyboardFrame;
 
+/*! 进场动画持续时间 默认：0.5f */
+@property (nonatomic, assign) double startAnimationDuration;
+
+/*! 出场动画持续时间 默认：0.5f */
+@property (nonatomic, assign) double endAnimationDuration;
+
 
 /*!
  *  创建一个完全自定义的 alertView
@@ -452,6 +458,12 @@ typedef void (^BAActionSheet_ActionBlock)(NSIndexPath *indexPath, BAActionSheetM
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
 
+ 
+ 最新更新时间：2018-04-12 【倒叙】 <br>
+ 最新Version：【Version：1.2.6】 <br>
+ 更新内容： <br>
+ 1.2.6.1、新增 进场动画持续时间 默认：0.5f (startAnimationDuration/endAnimationDuration) <br>
+ 1.2.6.2、优化部分动画封装<br>
  
  最新更新时间：2017-10-30 【倒叙】 <br>
  最新Version：【Version：1.2.5】 <br>
