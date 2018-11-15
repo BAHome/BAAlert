@@ -1,0 +1,6 @@
+framework module Pods_BAAlert_Example {
+  umbrella header "Pods-BAAlert_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

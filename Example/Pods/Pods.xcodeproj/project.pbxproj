@@ -1,0 +1,776 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11BA596C7DABE1698CE728EEA78B22B9 /* NSBundle+BAPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 09836653242604AC874A3BBC6568DEC8 /* NSBundle+BAPod.m */; };
+		15A159527A4CBAD5C9B6861A94167B6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E404AA6957590324067E330E0EC533 /* UIKit.framework */; };
+		1956FEE07F77BB031F3F22B8F3C6B2AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFB40531CB700ADF867FEEE78561E78 /* Foundation.framework */; };
+		1A268D54D3BAEB2342CBB65489C41BF0 /* CALayer+BAAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = D2FA4DFE07F7F8C331CDB6892CB8B79D /* CALayer+BAAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BBC763F7CA8EA825A4A7BA28BFAA854 /* BAAlert-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC51AA923E20E65A6B2B5257D7BFA52A /* BAAlert-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2272B8BF731334355484DF911FDA84DA /* UIView+BAAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 775D39D136BB8BB2484A02D3341AEA7D /* UIView+BAAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B53F059116203F25E952E896BDCA13F /* NSBundle+BAPod.h in Headers */ = {isa = PBXBuildFile; fileRef = B7B4D810FBB24D10D47EF6E373860CC5 /* NSBundle+BAPod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3043C0E9F6D1CC0ECC8B3E066431F419 /* BAActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 845A577018579F03D60BDE424934D4E5 /* BAActionSheet.m */; };
+		3F4D9326980ED4BC7AC5D33783ACD6BD /* BAActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = E7777DC9B50E2D177EB733F99285B61A /* BAActionSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4298459043892DC4761C87EA59DD0212 /* Pods-BAAlert_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 096BFA8909DD7C273872F5D0D2EFE098 /* Pods-BAAlert_Example-dummy.m */; };
+		4E5338BF6ACB23C6E35E1A589959BE13 /* CALayer+BAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 568E239C5FE9B60A8D02C0E8E8404E74 /* CALayer+BAAnimation.m */; };
+		5B5A73A12FECAB3DE4E57A5C52B291EB /* Pods-BAAlert_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C8BBAF7119B74BB98F80F98D242FB6F /* Pods-BAAlert_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B7417980F3C34D8867F5BF164FAFC44 /* BAAlert-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3249DBFB3C5FB2DBF412FDDB369F078B /* BAAlert-dummy.m */; };
+		61353F4874AB76B098BE09F4570BD6EE /* BAActionSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 510B9919213A2D87C4556096B8B58C69 /* BAActionSheetCell.m */; };
+		708BA9606AA6258F7133B60D3BC554DA /* BAAlert.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A707CFC4771F4E3C408B8D852044C79A /* BAAlert.bundle */; };
+		765BE33FF8BA2A00CDF93C975C7B93A2 /* BAAlert_Config.h in Headers */ = {isa = PBXBuildFile; fileRef = BF68D9616D5E94649BEB15802DE140B9 /* BAAlert_Config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7DD68FCAF6E58E4F23BC53D68B697FFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFB40531CB700ADF867FEEE78561E78 /* Foundation.framework */; };
+		8ABE7DBE8E6256AACB79D907911825DA /* UIView+BAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A11E047B0559DC4EB021CC8EA4EF5A2 /* UIView+BAAnimation.m */; };
+		97DBBF56BC5DA03496DA5C9E79B75909 /* BAAlert.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 107ED2412E0CD4739644B4BEC800CC2E /* BAAlert.bundle */; };
+		9DDB1D4A80B8947F0E656DA5B115CBE9 /* BAAlert_Version.h in Headers */ = {isa = PBXBuildFile; fileRef = 113ACE6463909E63F86E7A0333B16D43 /* BAAlert_Version.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF3C3DC7F40C12B7D2A6588AE763F5B4 /* BAAlert_OC.h in Headers */ = {isa = PBXBuildFile; fileRef = 87316E880C562E5BDEB6682C54A808AA /* BAAlert_OC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA9B8DB81EF580D5CFE90353F3D6DC14 /* BAKit_ConfigurationDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7281A8E04C06165558912EC5E006BDFB /* BAKit_ConfigurationDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1D262AF1897782E22E75E08BA3F592E /* BAAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F2DA6D5D9CD3E4BD8A351FC9C115F9E /* BAAlert.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D41EDA91439F204787F5543B8E165EE9 /* BAAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6032482019742A35ACD407AA62B08FA2 /* BAAlert.m */; };
+		E48CC916E3BD3844999121C39ED3A7AD /* BAAlert.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F900017B18931683EDB967BE01E9D4D7 /* BAAlert.xcassets */; };
+		FB81596FB554F9DBD47B647F813F7A8A /* BAActionSheetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A84EB7B808064B34E4978915713FBD /* BAActionSheetCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC4FE84517EAD2B5E7176FB75735219C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50D9340CD3D2F602BA28C3A6D29D1DB4;
+			remoteInfo = "BAAlert-BAAlert";
+		};
+		F62992AFE22FAFAC404D40FCB61237FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FCD499ECAEC6CC0638DF02B99B24488;
+			remoteInfo = BAAlert;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03A84EB7B808064B34E4978915713FBD /* BAActionSheetCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAActionSheetCell.h; path = BAAlert/Classes/BAAlert/BAActionSheetCell.h; sourceTree = "<group>"; };
+		096BFA8909DD7C273872F5D0D2EFE098 /* Pods-BAAlert_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BAAlert_Example-dummy.m"; sourceTree = "<group>"; };
+		09836653242604AC874A3BBC6568DEC8 /* NSBundle+BAPod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+BAPod.m"; path = "BAAlert/Classes/BAAlert/NSBundle+BAPod.m"; sourceTree = "<group>"; };
+		107ED2412E0CD4739644B4BEC800CC2E /* BAAlert.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BAAlert.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		113ACE6463909E63F86E7A0333B16D43 /* BAAlert_Version.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAlert_Version.h; path = BAAlert/Classes/BAAlert/BAAlert_Version.h; sourceTree = "<group>"; };
+		15BEF2EF21DC73CD856CBB5793B0E84C /* BAAlert-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BAAlert-prefix.pch"; sourceTree = "<group>"; };
+		2EFB40531CB700ADF867FEEE78561E78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3081812EEC45799024DA638F2573054F /* Pods-BAAlert_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BAAlert_Example-Info.plist"; sourceTree = "<group>"; };
+		3249DBFB3C5FB2DBF412FDDB369F078B /* BAAlert-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BAAlert-dummy.m"; sourceTree = "<group>"; };
+		368D7BFBD29C5CC8A3DF19DE4B5D118D /* BAAlert-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BAAlert-Info.plist"; sourceTree = "<group>"; };
+		3E32298D3748440266E4E00D5727499B /* Pods-BAAlert_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BAAlert_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4F2DA6D5D9CD3E4BD8A351FC9C115F9E /* BAAlert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAlert.h; path = BAAlert/Classes/BAAlert/BAAlert.h; sourceTree = "<group>"; };
+		510B9919213A2D87C4556096B8B58C69 /* BAActionSheetCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAActionSheetCell.m; path = BAAlert/Classes/BAAlert/BAActionSheetCell.m; sourceTree = "<group>"; };
+		52FA3FE343996F600A1619052A08CC97 /* BAAlert.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BAAlert.xcconfig; sourceTree = "<group>"; };
+		568E239C5FE9B60A8D02C0E8E8404E74 /* CALayer+BAAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+BAAnimation.m"; path = "BAAlert/Classes/BAAlert/CALayer+BAAnimation.m"; sourceTree = "<group>"; };
+		6032482019742A35ACD407AA62B08FA2 /* BAAlert.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAAlert.m; path = BAAlert/Classes/BAAlert/BAAlert.m; sourceTree = "<group>"; };
+		654AA6554746A0AB16EA35A6155D415D /* BAAlert.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BAAlert.modulemap; sourceTree = "<group>"; };
+		7281A8E04C06165558912EC5E006BDFB /* BAKit_ConfigurationDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAKit_ConfigurationDefine.h; path = BAAlert/Classes/BAAlert/BAKit_ConfigurationDefine.h; sourceTree = "<group>"; };
+		74E404AA6957590324067E330E0EC533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		775D39D136BB8BB2484A02D3341AEA7D /* UIView+BAAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+BAAnimation.h"; path = "BAAlert/Classes/BAAlert/UIView+BAAnimation.h"; sourceTree = "<group>"; };
+		7C8BBAF7119B74BB98F80F98D242FB6F /* Pods-BAAlert_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BAAlert_Example-umbrella.h"; sourceTree = "<group>"; };
+		845A577018579F03D60BDE424934D4E5 /* BAActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAActionSheet.m; path = BAAlert/Classes/BAAlert/BAActionSheet.m; sourceTree = "<group>"; };
+		87316E880C562E5BDEB6682C54A808AA /* BAAlert_OC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAlert_OC.h; path = BAAlert/Classes/BAAlert/BAAlert_OC.h; sourceTree = "<group>"; };
+		8E5B404827688DC3AB2A89A0AC44D5B3 /* Pods-BAAlert_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BAAlert_Example.release.xcconfig"; sourceTree = "<group>"; };
+		9A11E047B0559DC4EB021CC8EA4EF5A2 /* UIView+BAAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+BAAnimation.m"; path = "BAAlert/Classes/BAAlert/UIView+BAAnimation.m"; sourceTree = "<group>"; };
+		A707CFC4771F4E3C408B8D852044C79A /* BAAlert.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = BAAlert.bundle; path = BAAlert/Resources/BAAlert.bundle; sourceTree = "<group>"; };
+		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B3EA315005A2AF31935669718D7FD946 /* Pods-BAAlert_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BAAlert_Example-frameworks.sh"; sourceTree = "<group>"; };
+		B7B4D810FBB24D10D47EF6E373860CC5 /* NSBundle+BAPod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+BAPod.h"; path = "BAAlert/Classes/BAAlert/NSBundle+BAPod.h"; sourceTree = "<group>"; };
+		B8EB1F3E073F9CF189F5B467F24118DC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		BF68D9616D5E94649BEB15802DE140B9 /* BAAlert_Config.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAAlert_Config.h; path = BAAlert/Classes/BAAlert/BAAlert_Config.h; sourceTree = "<group>"; };
+		C79BF90FD582D94E5E908C75CFA37974 /* BAAlert.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BAAlert.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		C7F546028A498DFFE14CD546CF5DF469 /* BAAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BAAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2FA4DFE07F7F8C331CDB6892CB8B79D /* CALayer+BAAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+BAAnimation.h"; path = "BAAlert/Classes/BAAlert/CALayer+BAAnimation.h"; sourceTree = "<group>"; };
+		D6171758CD54E2F6CDC5722E565D8B1C /* ResourceBundle-BAAlert-BAAlert-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-BAAlert-BAAlert-Info.plist"; sourceTree = "<group>"; };
+		DF6FDDEE6F9B0C66CBF0641780293ABA /* Pods-BAAlert_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BAAlert_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E7777DC9B50E2D177EB733F99285B61A /* BAActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAActionSheet.h; path = BAAlert/Classes/BAAlert/BAActionSheet.h; sourceTree = "<group>"; };
+		EB88D707D1DE180B246D2E42823E3440 /* Pods_BAAlert_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAAlert_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC51AA923E20E65A6B2B5257D7BFA52A /* BAAlert-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BAAlert-umbrella.h"; sourceTree = "<group>"; };
+		F62BB6540F8A95C1719027FB64FD661F /* Pods-BAAlert_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BAAlert_Example.modulemap"; sourceTree = "<group>"; };
+		F900017B18931683EDB967BE01E9D4D7 /* BAAlert.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = BAAlert.xcassets; path = BAAlert/Resources/BAAlert.xcassets; sourceTree = "<group>"; };
+		FA564DE3DE490E5D379C7C0079B887D1 /* Pods-BAAlert_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BAAlert_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		FFC3F010010379CDED4E17B9D0F9DD92 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0281ACA88475C51CE002769098A3A8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DD68FCAF6E58E4F23BC53D68B697FFC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7BD15FF1676B77D25018BE39D9A0651 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1956FEE07F77BB031F3F22B8F3C6B2AC /* Foundation.framework in Frameworks */,
+				15A159527A4CBAD5C9B6861A94167B6D /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC9AD9FD27770A7DB43C2D79489D29A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06CDD10DE71306278CF89108B3036DFD /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2EFB40531CB700ADF867FEEE78561E78 /* Foundation.framework */,
+				74E404AA6957590324067E330E0EC533 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		0EF0BF6BBED9AAAC3262F5C7D1F0179A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				C79BF90FD582D94E5E908C75CFA37974 /* BAAlert.podspec */,
+				B8EB1F3E073F9CF189F5B467F24118DC /* LICENSE */,
+				FFC3F010010379CDED4E17B9D0F9DD92 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06CDD10DE71306278CF89108B3036DFD /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E2B72A4260796732F7038F6E0ED77E1 /* BAAlert */ = {
+			isa = PBXGroup;
+			children = (
+				E7777DC9B50E2D177EB733F99285B61A /* BAActionSheet.h */,
+				845A577018579F03D60BDE424934D4E5 /* BAActionSheet.m */,
+				03A84EB7B808064B34E4978915713FBD /* BAActionSheetCell.h */,
+				510B9919213A2D87C4556096B8B58C69 /* BAActionSheetCell.m */,
+				4F2DA6D5D9CD3E4BD8A351FC9C115F9E /* BAAlert.h */,
+				6032482019742A35ACD407AA62B08FA2 /* BAAlert.m */,
+				BF68D9616D5E94649BEB15802DE140B9 /* BAAlert_Config.h */,
+				87316E880C562E5BDEB6682C54A808AA /* BAAlert_OC.h */,
+				113ACE6463909E63F86E7A0333B16D43 /* BAAlert_Version.h */,
+				7281A8E04C06165558912EC5E006BDFB /* BAKit_ConfigurationDefine.h */,
+				D2FA4DFE07F7F8C331CDB6892CB8B79D /* CALayer+BAAnimation.h */,
+				568E239C5FE9B60A8D02C0E8E8404E74 /* CALayer+BAAnimation.m */,
+				B7B4D810FBB24D10D47EF6E373860CC5 /* NSBundle+BAPod.h */,
+				09836653242604AC874A3BBC6568DEC8 /* NSBundle+BAPod.m */,
+				775D39D136BB8BB2484A02D3341AEA7D /* UIView+BAAnimation.h */,
+				9A11E047B0559DC4EB021CC8EA4EF5A2 /* UIView+BAAnimation.m */,
+				0EF0BF6BBED9AAAC3262F5C7D1F0179A /* Pod */,
+				80C5169DCF733C679E8DF440A60A3984 /* Resources */,
+				BB9C5F150D3EC24570FACB018C1754B4 /* Support Files */,
+			);
+			name = BAAlert;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		619F2A41FF3F89B910E868A784FD8654 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8BA0B8B174C646A22C51F7C365739789 /* Pods-BAAlert_Example */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7C7D1B4E7315979445B833E4F358BD35 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				107ED2412E0CD4739644B4BEC800CC2E /* BAAlert.bundle */,
+				C7F546028A498DFFE14CD546CF5DF469 /* BAAlert.framework */,
+				EB88D707D1DE180B246D2E42823E3440 /* Pods_BAAlert_Example.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */,
+				912C2D634D1BCABE44F1E62361090CCB /* Development Pods */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				7C7D1B4E7315979445B833E4F358BD35 /* Products */,
+				619F2A41FF3F89B910E868A784FD8654 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		80C5169DCF733C679E8DF440A60A3984 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A707CFC4771F4E3C408B8D852044C79A /* BAAlert.bundle */,
+				F900017B18931683EDB967BE01E9D4D7 /* BAAlert.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8BA0B8B174C646A22C51F7C365739789 /* Pods-BAAlert_Example */ = {
+			isa = PBXGroup;
+			children = (
+				F62BB6540F8A95C1719027FB64FD661F /* Pods-BAAlert_Example.modulemap */,
+				DF6FDDEE6F9B0C66CBF0641780293ABA /* Pods-BAAlert_Example-acknowledgements.markdown */,
+				FA564DE3DE490E5D379C7C0079B887D1 /* Pods-BAAlert_Example-acknowledgements.plist */,
+				096BFA8909DD7C273872F5D0D2EFE098 /* Pods-BAAlert_Example-dummy.m */,
+				B3EA315005A2AF31935669718D7FD946 /* Pods-BAAlert_Example-frameworks.sh */,
+				3081812EEC45799024DA638F2573054F /* Pods-BAAlert_Example-Info.plist */,
+				7C8BBAF7119B74BB98F80F98D242FB6F /* Pods-BAAlert_Example-umbrella.h */,
+				3E32298D3748440266E4E00D5727499B /* Pods-BAAlert_Example.debug.xcconfig */,
+				8E5B404827688DC3AB2A89A0AC44D5B3 /* Pods-BAAlert_Example.release.xcconfig */,
+			);
+			name = "Pods-BAAlert_Example";
+			path = "Target Support Files/Pods-BAAlert_Example";
+			sourceTree = "<group>";
+		};
+		912C2D634D1BCABE44F1E62361090CCB /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E2B72A4260796732F7038F6E0ED77E1 /* BAAlert */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		BB9C5F150D3EC24570FACB018C1754B4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				654AA6554746A0AB16EA35A6155D415D /* BAAlert.modulemap */,
+				52FA3FE343996F600A1619052A08CC97 /* BAAlert.xcconfig */,
+				3249DBFB3C5FB2DBF412FDDB369F078B /* BAAlert-dummy.m */,
+				368D7BFBD29C5CC8A3DF19DE4B5D118D /* BAAlert-Info.plist */,
+				15BEF2EF21DC73CD856CBB5793B0E84C /* BAAlert-prefix.pch */,
+				EC51AA923E20E65A6B2B5257D7BFA52A /* BAAlert-umbrella.h */,
+				D6171758CD54E2F6CDC5722E565D8B1C /* ResourceBundle-BAAlert-BAAlert-Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/BAAlert";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		11E335D5D370C0449A74BE8C043EF82C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F4D9326980ED4BC7AC5D33783ACD6BD /* BAActionSheet.h in Headers */,
+				FB81596FB554F9DBD47B647F813F7A8A /* BAActionSheetCell.h in Headers */,
+				1BBC763F7CA8EA825A4A7BA28BFAA854 /* BAAlert-umbrella.h in Headers */,
+				D1D262AF1897782E22E75E08BA3F592E /* BAAlert.h in Headers */,
+				765BE33FF8BA2A00CDF93C975C7B93A2 /* BAAlert_Config.h in Headers */,
+				BF3C3DC7F40C12B7D2A6588AE763F5B4 /* BAAlert_OC.h in Headers */,
+				9DDB1D4A80B8947F0E656DA5B115CBE9 /* BAAlert_Version.h in Headers */,
+				CA9B8DB81EF580D5CFE90353F3D6DC14 /* BAKit_ConfigurationDefine.h in Headers */,
+				1A268D54D3BAEB2342CBB65489C41BF0 /* CALayer+BAAnimation.h in Headers */,
+				2B53F059116203F25E952E896BDCA13F /* NSBundle+BAPod.h in Headers */,
+				2272B8BF731334355484DF911FDA84DA /* UIView+BAAnimation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8B1B5819A0A7A2028B46FE307149471 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B5A73A12FECAB3DE4E57A5C52B291EB /* Pods-BAAlert_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0FCD499ECAEC6CC0638DF02B99B24488 /* BAAlert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8130908689E8503100B71C0AE6912F9 /* Build configuration list for PBXNativeTarget "BAAlert" */;
+			buildPhases = (
+				11E335D5D370C0449A74BE8C043EF82C /* Headers */,
+				1140761EA9CDC05D1708AC2FB992ED87 /* Sources */,
+				E7BD15FF1676B77D25018BE39D9A0651 /* Frameworks */,
+				83F7E0C1A0CC9AFB4EF596BA3CDAE429 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				028767D048EB19269A3AF16B94E6A2F9 /* PBXTargetDependency */,
+			);
+			name = BAAlert;
+			productName = BAAlert;
+			productReference = C7F546028A498DFFE14CD546CF5DF469 /* BAAlert.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		50D9340CD3D2F602BA28C3A6D29D1DB4 /* BAAlert-BAAlert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DA9BBCFB76183C85FD0E6351DF2766F /* Build configuration list for PBXNativeTarget "BAAlert-BAAlert" */;
+			buildPhases = (
+				2AF4368A24204413468CD7ABB5EC48C0 /* Sources */,
+				EC9AD9FD27770A7DB43C2D79489D29A3 /* Frameworks */,
+				0549DA1037081E900D0ED05C9AE4F593 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BAAlert-BAAlert";
+			productName = "BAAlert-BAAlert";
+			productReference = 107ED2412E0CD4739644B4BEC800CC2E /* BAAlert.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		97A5BCC5E0C219E6859B3F513AD2699D /* Pods-BAAlert_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC337CCBED234DDB9D6AF7148D631331 /* Build configuration list for PBXNativeTarget "Pods-BAAlert_Example" */;
+			buildPhases = (
+				A8B1B5819A0A7A2028B46FE307149471 /* Headers */,
+				88D184B7A4E31902345CE7AC5B39DD0D /* Sources */,
+				D0281ACA88475C51CE002769098A3A8B /* Frameworks */,
+				4A3F65DF9616F79D96E5EB65A942A9DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CC38095324AEEDFF8BC925C18B7449B /* PBXTargetDependency */,
+			);
+			name = "Pods-BAAlert_Example";
+			productName = "Pods-BAAlert_Example";
+			productReference = EB88D707D1DE180B246D2E42823E3440 /* Pods_BAAlert_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 7C7D1B4E7315979445B833E4F358BD35 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0FCD499ECAEC6CC0638DF02B99B24488 /* BAAlert */,
+				50D9340CD3D2F602BA28C3A6D29D1DB4 /* BAAlert-BAAlert */,
+				97A5BCC5E0C219E6859B3F513AD2699D /* Pods-BAAlert_Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0549DA1037081E900D0ED05C9AE4F593 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				708BA9606AA6258F7133B60D3BC554DA /* BAAlert.bundle in Resources */,
+				E48CC916E3BD3844999121C39ED3A7AD /* BAAlert.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A3F65DF9616F79D96E5EB65A942A9DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F7E0C1A0CC9AFB4EF596BA3CDAE429 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97DBBF56BC5DA03496DA5C9E79B75909 /* BAAlert.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1140761EA9CDC05D1708AC2FB992ED87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3043C0E9F6D1CC0ECC8B3E066431F419 /* BAActionSheet.m in Sources */,
+				61353F4874AB76B098BE09F4570BD6EE /* BAActionSheetCell.m in Sources */,
+				5B7417980F3C34D8867F5BF164FAFC44 /* BAAlert-dummy.m in Sources */,
+				D41EDA91439F204787F5543B8E165EE9 /* BAAlert.m in Sources */,
+				4E5338BF6ACB23C6E35E1A589959BE13 /* CALayer+BAAnimation.m in Sources */,
+				11BA596C7DABE1698CE728EEA78B22B9 /* NSBundle+BAPod.m in Sources */,
+				8ABE7DBE8E6256AACB79D907911825DA /* UIView+BAAnimation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AF4368A24204413468CD7ABB5EC48C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88D184B7A4E31902345CE7AC5B39DD0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4298459043892DC4761C87EA59DD0212 /* Pods-BAAlert_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		028767D048EB19269A3AF16B94E6A2F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BAAlert-BAAlert";
+			target = 50D9340CD3D2F602BA28C3A6D29D1DB4 /* BAAlert-BAAlert */;
+			targetProxy = DC4FE84517EAD2B5E7176FB75735219C /* PBXContainerItemProxy */;
+		};
+		8CC38095324AEEDFF8BC925C18B7449B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BAAlert;
+			target = 0FCD499ECAEC6CC0638DF02B99B24488 /* BAAlert */;
+			targetProxy = F62992AFE22FAFAC404D40FCB61237FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5153DC2E9BB4F6D6F85AF7C0A4A2A27F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		56DC28F96AF3D6B30795386D3F392F65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FA3FE343996F600A1619052A08CC97 /* BAAlert.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BAAlert/BAAlert-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BAAlert/BAAlert-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BAAlert/BAAlert.modulemap";
+				PRODUCT_MODULE_NAME = BAAlert;
+				PRODUCT_NAME = BAAlert;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		64668F11D239CFE6F38247DA2182EED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FA3FE343996F600A1619052A08CC97 /* BAAlert.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BAAlert/BAAlert-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BAAlert/BAAlert-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BAAlert/BAAlert.modulemap";
+				PRODUCT_MODULE_NAME = BAAlert;
+				PRODUCT_NAME = BAAlert;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6A949A208667F02694AF29D5DCC8D4BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		915F0230D056A88AEE97C14FDD6B9D5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E5B404827688DC3AB2A89A0AC44D5B3 /* Pods-BAAlert_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BAAlert_Example/Pods-BAAlert_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BAAlert_Example/Pods-BAAlert_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		970264871B5822A85811E27835F7895B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E32298D3748440266E4E00D5727499B /* Pods-BAAlert_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BAAlert_Example/Pods-BAAlert_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BAAlert_Example/Pods-BAAlert_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A0A587DE98F9A57ABFAB7C89E9F3B5C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FA3FE343996F600A1619052A08CC97 /* BAAlert.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BAAlert";
+				INFOPLIST_FILE = "Target Support Files/BAAlert/ResourceBundle-BAAlert-BAAlert-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = BAAlert;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		E28059169CD040DDDFB7E4C2642932DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FA3FE343996F600A1619052A08CC97 /* BAAlert.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BAAlert";
+				INFOPLIST_FILE = "Target Support Files/BAAlert/ResourceBundle-BAAlert-BAAlert-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = BAAlert;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DA9BBCFB76183C85FD0E6351DF2766F /* Build configuration list for PBXNativeTarget "BAAlert-BAAlert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0A587DE98F9A57ABFAB7C89E9F3B5C8 /* Debug */,
+				E28059169CD040DDDFB7E4C2642932DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5153DC2E9BB4F6D6F85AF7C0A4A2A27F /* Debug */,
+				6A949A208667F02694AF29D5DCC8D4BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC337CCBED234DDB9D6AF7148D631331 /* Build configuration list for PBXNativeTarget "Pods-BAAlert_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				970264871B5822A85811E27835F7895B /* Debug */,
+				915F0230D056A88AEE97C14FDD6B9D5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8130908689E8503100B71C0AE6912F9 /* Build configuration list for PBXNativeTarget "BAAlert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56DC28F96AF3D6B30795386D3F392F65 /* Debug */,
+				64668F11D239CFE6F38247DA2182EED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

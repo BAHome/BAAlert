@@ -1,0 +1,16 @@
+PODS:
+  - BAAlert (1.2.7)
+
+DEPENDENCIES:
+  - BAAlert (from `../`)
+
+EXTERNAL SOURCES:
+  BAAlert:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BAAlert: 2f1bbace38f437628e452941ee254ecc46000844
+
+PODFILE CHECKSUM: 7bde3cca0ff1c615125fc12bd503119d1c78d90d
+
+COCOAPODS: 1.6.0.beta.2

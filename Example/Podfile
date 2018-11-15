@@ -1,0 +1,6 @@
+use_frameworks!
+
+target 'BAAlert_Example' do
+  pod 'BAAlert', :path => '../'
+
+end

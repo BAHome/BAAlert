@@ -1,0 +1,6 @@
+framework module BAAlert {
+  umbrella header "BAAlert-umbrella.h"
+
+  export *
+  module * { export * }
+}
